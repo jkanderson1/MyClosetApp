@@ -23,4 +23,6 @@ Sahiba Seth sseth@email.sc.edu
 
 Jordyn Anderson
 
+@jordynka@email.sc.edu
+
 Dominic Campbell dcc7@email.sc.edu
