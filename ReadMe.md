@@ -1,4 +1,4 @@
-#My Closet
+# My Closet
 
 My Closet is an application that will allow users to navigate their closets 
 virtually. Users will first create an account, then they will be able to add 
