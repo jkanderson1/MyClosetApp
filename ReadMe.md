@@ -6,3 +6,9 @@ https://github.com/SCCapstone/ByteTheBullet/wiki/Design
 In order to run our app you will have to download android studio or have an android app [https://developer.android.com/studio/]
 
 Dom
+
+
+# Authors
+Christina Desmangles desmangc@email.sc.edu 
+
+Sahiba Seth sseth@email.sc.edu
