@@ -21,6 +21,6 @@ Christina Desmangles desmangc@email.sc.edu
 
 Sahiba Seth sseth@email.sc.edu
 
-Jordyn 
+Jordyn Anderson
 
 Dominic Campbell dcc7@email.sc.edu
