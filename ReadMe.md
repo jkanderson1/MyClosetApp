@@ -15,6 +15,9 @@ In order to run our app you will have to download android studio or have an andr
 # Setup
 Once cloned, the developer needs to sync gradle. 
 
+# Running
+In order to run the build you need to have an android emulator enabled, then you can press the
+play button at the top of the screen in order to the app
 
 # Authors
 Christina Desmangles desmangc@email.sc.edu 
