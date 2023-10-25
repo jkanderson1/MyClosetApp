@@ -15,6 +15,7 @@ In order to run our app you will have to download android studio or have an andr
 # Setup
 Once cloned, the developer needs to sync gradle. 
 
+## Running 
 
 # Authors
 Christina Desmangles desmangc@email.sc.edu 
