@@ -11,11 +11,21 @@ https://github.com/SCCapstone/ByteTheBullet/wiki/Design
 
 In order to run our app you will have to download android studio or have an android app [https://developer.android.com/studio/]
 
+# External Requirements
 
-# Setup
+## Setup
 Once cloned, the developer needs to sync gradle. 
 
 ## Running 
+
+# Deployment 
+
+# Testing
+
+## Testing Technology
+
+## Running Tests
+
 
 # Authors
 Christina Desmangles desmangc@email.sc.edu 
