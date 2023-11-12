@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">My Closet</string>
     <string name="Hello">Hello</string>
+    <string name="Login">Login</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Register">Register</string>
+    <string name="clickToLogin">Click to Login</string>
+    <string name="clickToRegister">Click to Register</string>
+    <string name="Logout">Logout</string>
+
+
 </resources>
