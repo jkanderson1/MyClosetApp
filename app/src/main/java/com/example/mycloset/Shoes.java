@@ -13,11 +13,11 @@ public class Shoes extends Clothing {
 
     /**
      * Adds clothing item to firebase database, and sets appropriate string id
-     *
      * @return id
      */
     @Override
     public String setItem() {
+        // TODO: add shoe to firebase
         return null;
     }
 }

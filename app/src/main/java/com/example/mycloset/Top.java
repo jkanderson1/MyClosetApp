@@ -8,6 +8,8 @@ public class Top extends Clothing{
     public int TopID;
     ArrayList colors = new ArrayList<String>();
 
+
+
     /**
      * @param id - identifier of object found in firebase
      * @return Clothing item
@@ -24,6 +26,7 @@ public class Top extends Clothing{
      */
     @Override
     public String setItem() {
+        // TODO: add top to firebase
         return null;
     }
 }
