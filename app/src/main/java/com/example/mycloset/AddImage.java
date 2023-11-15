@@ -28,7 +28,6 @@ public class AddImage extends AppCompatActivity {
 
     AddImageBinding binding;
     Uri imageUri;
-
     StorageReference storageReference;
 
     ProgressDialog progressDialog;

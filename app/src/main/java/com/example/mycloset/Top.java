@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class Top extends Clothing{
     ArrayList colors = new ArrayList<String>();
+    ArrayList season = new ArrayList<String>();
+    ArrayList style = new ArrayList<String>();
+    String Picture;
+    Boolean Favorite;
 
     /**
      * @param id - identifier of object found in firebase
