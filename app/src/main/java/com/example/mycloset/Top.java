@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 
 public class Top extends Clothing{
-
-    public int TopID;
     ArrayList colors = new ArrayList<String>();
 
     /**
