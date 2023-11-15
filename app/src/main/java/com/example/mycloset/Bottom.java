@@ -1,8 +1,14 @@
 package com.example.mycloset;
 
+import java.util.ArrayList;
+
 public class Bottom extends Clothing {
 
-
+    ArrayList colors = new ArrayList<String>();
+    ArrayList season = new ArrayList<String>();
+    ArrayList style = new ArrayList<String>();
+    String Picture;
+    Boolean Favorite;
 
     /**
      * @param id - identifier of object found in firebase
@@ -25,7 +31,6 @@ public class Bottom extends Clothing {
      */
     @Override
     public String setItem() {
-        //TODO: add Bottom to firebase
         return null;
     }
 }

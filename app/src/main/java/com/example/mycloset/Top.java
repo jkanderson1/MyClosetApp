@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 
 public class Top extends Clothing{
-
-    public int TopID;
     ArrayList colors = new ArrayList<String>();
+    ArrayList season = new ArrayList<String>();
+    ArrayList style = new ArrayList<String>();
+    String Picture;
+    Boolean Favorite;
 
 
 
