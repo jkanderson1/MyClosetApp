@@ -1,6 +1,12 @@
 package com.example.mycloset;
 
+import java.util.ArrayList;
+
+
 public class Top extends Clothing{
+
+    public int TopID;
+    ArrayList colors = new ArrayList<String>();
 
     /**
      * @param id - identifier of object found in firebase
