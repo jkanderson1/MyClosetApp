@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toTopOf="@+id/Notifications"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <Switch
         android:id="@+id/Notifications"
@@ -28,7 +29,8 @@
         app:layout_constraintBottom_toTopOf="@+id/AccountButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preferences" />
+        app:layout_constraintTop_toBottomOf="@+id/preferences"
+        tools:ignore="HardcodedText,UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/AccountButton"
@@ -40,7 +42,8 @@
         app:layout_constraintBottom_toTopOf="@+id/LogoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Notifications" />
+        app:layout_constraintTop_toBottomOf="@+id/Notifications"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/LogoutButton"
@@ -52,5 +55,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AccountButton" />
+        app:layout_constraintTop_toBottomOf="@+id/AccountButton"
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
