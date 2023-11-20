@@ -13,6 +13,7 @@ public class AddItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
+        // initializes a dropdown of clothing styles
         Spinner stylesSpinner = findViewById(R.id.StyleSpinner);
         ArrayAdapter<CharSequence> styleAdapter=
                 ArrayAdapter.createFromResource(this,
