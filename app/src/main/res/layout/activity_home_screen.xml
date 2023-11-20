@@ -25,19 +25,13 @@
             android:textSize="30sp" />
 
         <Button
-            android:text="@string/logout"
-            android:id="@+id/logout"
+            android:id="@+id/AccountEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"/>
+            android:width="5dp"
+            android:text="T" />
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/AccountEdit"
-        android:layout_width="58dp"
-        android:layout_height="39dp"
-        android:width="5dp"
-        android:text="T"
-        tools:layout_editor_absoluteX="188dp"
-        tools:layout_editor_absoluteY="142dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

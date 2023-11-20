@@ -8,7 +8,7 @@
     <string name="clickToLogin">Click to Login</string>
     <string name="clickToRegister">Click to Register</string>
     <string name="logout">Logout</string>
-    <string name ="SignUp">Sign Up</string>
+    <string name="SignUp">Sign Up</string>
 
 
 </resources>
