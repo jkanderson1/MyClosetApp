@@ -8,7 +8,11 @@
     <string name="clickToLogin">Click to Login</string>
     <string name="clickToRegister">Click to Register</string>
     <string name="Logout">Logout</string>
-    <string name ="SignUp">Sign Up</string>
-
-
+    <string name="SignUp">Sign Up</string>
+    <string name="AddItem">Add Item</string>
+    <string-array name = "ClothingStyles">
+        <item>Business Casual</item>
+        <item>Athletic</item>
+        <item>Casual</item>
+    </string-array>
 </resources>
