@@ -10,7 +10,7 @@
     <string name="Logout">Logout</string>
     <string name="SignUp">Sign Up</string>
     <string name="AddItem">Add Item</string>
-    <string-array name = "ClothingStyles">
+    <string-array name="ClothingStyles">
         <item>Business Casual</item>
         <item>Athletic</item>
         <item>Casual</item>
