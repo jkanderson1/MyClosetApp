@@ -20,8 +20,8 @@
 
     <Switch
         android:id="@+id/Notifications"
-        android:layout_width="133dp"
-        android:layout_height="36dp"
+        android:layout_width="154dp"
+        android:layout_height="58dp"
         android:layout_marginTop="45dp"
         android:layout_marginBottom="46dp"
         android:text="Notifications"
