@@ -66,8 +66,7 @@
             <Spinner
                 android:id="@+id/StyleDropdown"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:entries="@array/ClothingStyles" />
+                android:layout_height="60dp" />
 
             <Space
                 android:layout_width="match_parent"
