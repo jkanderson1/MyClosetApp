@@ -53,7 +53,8 @@ public class Register extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             /**
-             Down below is the method to switch screens, the button makin happens in the xml
+             Down below is the method to switch screens, the button making
+             happens in the xml
              */
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);

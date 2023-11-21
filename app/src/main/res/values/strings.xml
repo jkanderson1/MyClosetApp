@@ -10,9 +10,16 @@
     <string name="Logout">Logout</string>
     <string name="SignUp">Sign Up</string>
     <string name="AddItem">Add Item</string>
+    <string name="addToFavorites">Add Item to Favorites</string>
+    <string name= "addImage">Add Image</string>
     <string-array name="ClothingStyles">
         <item>Business Casual</item>
         <item>Athletic</item>
         <item>Casual</item>
+    </string-array>
+    <string-array name="ClothingType">
+        <item>Top</item>
+        <item>Bottom</item>
+        <item>Shoe</item>
     </string-array>
 </resources>
