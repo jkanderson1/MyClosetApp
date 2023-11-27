@@ -37,6 +37,7 @@ public class Login extends AppCompatActivity {
             finish();
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,8 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(),
                                             "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent =
+                                            new Intent(getApplicationContext(), HomeScreen.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -94,6 +96,7 @@ public class Login extends AppCompatActivity {
                                 }
                             }
                         });
+
             }
         });
     }
