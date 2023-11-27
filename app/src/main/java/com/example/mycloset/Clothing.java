@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Clothing {
+    //TODO: somehow connect to firebase so items can be added
 
     public String identification;   // randomly generated string to identify
     // item in firebase
