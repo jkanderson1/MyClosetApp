@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class AddImage extends AppCompatActivity {
     StorageReference storageReference;
 
     ProgressDialog progressDialog;
+    Button next;
+
 
 
     @Override
@@ -39,6 +42,7 @@ public class AddImage extends AppCompatActivity {
         setContentView(R.layout.add_image);
         binding = AddImageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        next.findViewById(R.id.NextButton);
 
         binding.selectImage.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -53,6 +57,16 @@ public class AddImage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadImage();
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), AddItem.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -110,5 +124,7 @@ public class AddImage extends AppCompatActivity {
             binding.firebaseImage.setImageURI(imageUri);
         }
     }
+
+
 
 }
