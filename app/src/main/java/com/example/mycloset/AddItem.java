@@ -11,9 +11,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.lang.reflect.Array;
 
 public class AddItem extends AppCompatActivity {
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
     // Initializing all necessary variables
     Spinner styleSpinner, typeSpinner;
     Button finished;
