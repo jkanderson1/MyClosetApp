@@ -98,6 +98,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ViewSwitcher
+        android:id="@+id/addItemSwitchFavorite"
         android:layout_width="99dp"
         android:layout_height="83dp"
         android:layout_marginTop="25dp"
@@ -122,9 +123,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="84dp"
+            android:contentDescription="Item has been added to favorites"
             android:visibility="visible"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            android:contentDescription="Item has been added to favorites"/>
+            app:srcCompat="@android:drawable/btn_star_big_on" />
     </ViewSwitcher>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

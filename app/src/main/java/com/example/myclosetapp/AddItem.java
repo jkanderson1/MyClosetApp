@@ -13,6 +13,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
     ViewSwitcher swichFavs;
@@ -20,12 +26,32 @@ public class AddItem extends AppCompatActivity {
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
     TextView myCloset;
+    Clothing testItem;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+
+        // For testing purposes
+            ArrayList<String> colors = new ArrayList<>();
+            colors.add("Blue");
+            colors.add("White");
+            String pictureId = "2";
+            ArrayList<String> seasons = new ArrayList<>();
+            seasons.add("Spring");
+            seasons.add("Summer");
+            ArrayList<String> style = new ArrayList<>();
+            style.add("Business Casual");
+            style.add("Business Formal");
+
+            testItem = new Clothing();
+
+
+
+        swichFavs = (ViewSwitcher)findViewById(R.id.addItemSwitchFavorite);
 
         favFalse = findViewById(R.id.addItemisFavFalse);
         favFalse.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +67,12 @@ public class AddItem extends AppCompatActivity {
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // for testing purposes
+                    testItem.setColors(colors);
+                    testItem.setSeasons(seasons);
+                    testItem.setStyles(style);
+                    testItem.addToCloset();
+
                 Intent intent  = new Intent(getApplicationContext(),
                         HomeScreen.class);
                 startActivity(intent);
@@ -50,7 +82,7 @@ public class AddItem extends AppCompatActivity {
     }
 
     protected void favoriteMe(ImageButton favorite, ImageButton notFavorite){
-        // TODO: idk if this makes any sort of sense
+        testItem.setFavorite(true);
     }
 
 }
