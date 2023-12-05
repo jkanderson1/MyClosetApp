@@ -7,5 +7,18 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="my_closet">My Closet</string>
+    <string name ="typeHint">Enter Clothing Type</string>
+    <string name = "styleHint">Select Clothing Style(s)</string>
+    <string-array name="ClothingStyles">
+        <item>Business Casual</item>
+        <item>Athletic</item>
+        <item>Casual</item>
+    </string-array>
+    <string-array name="ClothingType">
+        <item>Select Clothing Type</item>
+        <item>Top</item>
+        <item>Bottom</item>
+        <item>Shoe</item>
+    </string-array>
 
 </resources>

@@ -9,16 +9,20 @@ import java.util.Random;
 public class Clothing {
 
     private final String ITEMS = "Items";
-    public String identification;   // randomly generated string to identify
+    private String identification;   // randomly generated string to identify
     // item in firebase
-    public ArrayList<String> colors;    // array list of colors in the item
-    public ArrayList<String> seasons;   // arraylist of seasons appropriate
+    private ArrayList<String> colors;    // array list of colors in the item
+    private ArrayList<String> seasons;   // arraylist of seasons appropriate
     // for item
-    public ArrayList<String> styles;    // arraylist of Styles appropriate
+    private ArrayList<String> styles;    // arraylist of Styles appropriate
     // for item
-    public String pictureID;   // randomly generated string identification of
+    private String pictureID;   // randomly generated string identification of
     // associated image
-    public Boolean favorite;    // if the item is favorited
+    private Boolean favorite;    // if the item is favorited
+    private String type;
+
+
+
 
     private DatabaseReference closet = FirebaseDatabase.getInstance().getReference();
 
@@ -37,7 +41,8 @@ public class Clothing {
         seasons = null;
         styles = null;
         pictureID = null;
-        favorite = null;
+        favorite = false;
+        type = null;
     }
 
     /**
@@ -46,14 +51,17 @@ public class Clothing {
      * Item is set as a child of "Items" and then as a child of its id
      */
     public void addToCloset(){
+        //TODO: figure out how to check if that ID has already been used
+        // TODO: add items under the current user's ID
         closet.child(ITEMS).child(identification).setValue(this);
     }
+
 
     /**
      * Creates a randomly generated Integer that is converted into a string
      * @return identification
      */
-    protected String createID(){
+    private String createID(){
 
         if (identification != null) {
             return identification;
@@ -118,4 +126,10 @@ public class Clothing {
     public String getIdentification() {
         return identification;
     }
+
+    public void setType(ClothingType type){
+        this.type = type.toString();
+    }
+
+    public String getType(){return this.type;}
 }
