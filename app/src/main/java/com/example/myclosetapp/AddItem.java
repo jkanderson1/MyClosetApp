@@ -3,7 +3,6 @@ package com.example.myclosetapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,7 @@ import android.widget.ViewSwitcher;
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
     ViewSwitcher swichFavs;
-    Button finished;
+    Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
     TextView myCloset;
@@ -36,6 +35,15 @@ public class AddItem extends AppCompatActivity {
 
             }
         });
+        settings = findViewById(R.id.button3);
+        settings.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(getApplicationContext(), Settings.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+        });
 
         finished = findViewById(R.id.addItemFinished);
         finished.setOnClickListener(new View.OnClickListener() {
@@ -47,10 +55,14 @@ public class AddItem extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
     }
 
     protected void favoriteMe(ImageButton favorite, ImageButton notFavorite){
         // TODO: idk if this makes any sort of sense
     }
+
 
 }

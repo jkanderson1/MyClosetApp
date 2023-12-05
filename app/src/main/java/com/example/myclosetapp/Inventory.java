@@ -24,6 +24,7 @@ public class Inventory extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(intent);
+                finish();
             }
 
         });
