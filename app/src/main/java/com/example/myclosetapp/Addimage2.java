@@ -25,9 +25,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddImage extends AppCompatActivity {
+public class Addimage2 extends AppCompatActivity {
 
-   ActivityAddImageBinding binding;
+    ActivityAddImageBinding binding;
     Uri imageUri;
     StorageReference storageReference;
 
@@ -87,7 +87,7 @@ public class AddImage extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         binding.firebaseImage.setImageURI(null);
-                        Toast.makeText(AddImage.this,"Successfully Uploaded", Toast.LENGTH_SHORT);
+                        Toast.makeText(Addimage2.this,"Successfully Uploaded", Toast.LENGTH_SHORT);
                         if(progressDialog.isShowing())
                         {
                             progressDialog.dismiss();
@@ -100,10 +100,11 @@ public class AddImage extends AppCompatActivity {
                         {
                             progressDialog.dismiss();
                         }
-                        Toast.makeText(AddImage.this,"Failed to Upload", Toast.LENGTH_SHORT);
+                        Toast.makeText(Addimage2.this,"Failed to Upload", Toast.LENGTH_SHORT);
 
                     }
                 });
+
     }
 
     private void selectImage() {
@@ -124,6 +125,7 @@ public class AddImage extends AppCompatActivity {
             binding.firebaseImage.setImageURI(imageUri);
         }
     }
+
 
 
 }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyClosetApp"
         tools:targetApi="31">
         <activity
+            android:name=".Addimage2"
+            android:exported="false" />
+        <activity
             android:name=".FindOutfit"
             android:exported="false" />
         <activity
