@@ -10,6 +10,7 @@
         android:id="@+id/addItemAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="12sp"
         android:text="@string/app_name"
@@ -17,6 +18,7 @@
         android:textColor="#040404"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,15 +46,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addItemFinished"
+        android:id="@+id/addImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/AddItem"
+        android:text="@string/add_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintTop_toBottomOf="@+id/addItemColorLayout"
         app:layout_constraintVertical_bias="0.988" />
 
@@ -102,7 +103,7 @@
         android:layout_height="83dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addItemFinished"
+        app:layout_constraintEnd_toStartOf="@+id/addImageButton"
         app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemColorLayout"
