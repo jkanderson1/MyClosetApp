@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class Settings extends AppCompatActivity {
 
@@ -29,10 +31,10 @@ public class Settings extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent  = new Intent(getApplicationContext(),
-                        OpeningScreen.class);
-                startActivity(intent);
-                finish();
+                /**Intent intent  = new Intent(getApplicationContext(),
+                        OpeningScreen.class); */
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Settings.this, OpeningScreen.class));
             }
         });
 
