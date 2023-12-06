@@ -1,6 +1,5 @@
 package com.example.myclosetapp;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
     ViewSwitcher swichFavs;
-    Button finished;
+    Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
     TextView myCloset;
@@ -64,6 +63,16 @@ public class AddItem extends AppCompatActivity {
         setStyleSpinner();
         setTypeSpinner();
         finishActivity();
+
+        settings = findViewById(R.id.button3);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Settings.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void setStyleSpinner() {
@@ -73,6 +82,8 @@ public class AddItem extends AppCompatActivity {
         colorInput = findViewById(R.id.addItemColorTextInputEditText);
         // TODO: how to read input from text input
     }
+            }
+
 
     private void finishActivity(){
         finished = findViewById(R.id.addItemToAddImage);
@@ -109,6 +120,9 @@ public class AddItem extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
     private void favoriteMe(){
@@ -168,5 +182,6 @@ public class AddItem extends AppCompatActivity {
             }
         });
     }
+
 
 }

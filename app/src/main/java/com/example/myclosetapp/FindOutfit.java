@@ -2,24 +2,21 @@ package com.example.myclosetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 
+public class FindOutfit extends AppCompatActivity {
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-public class Inventory extends AppCompatActivity {
-
-    public Button settings;
+    Button settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_find_outfit);
 
-        settings = (Button) findViewById(R.id.button1);
+        settings = (Button) findViewById(R.id.button4);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,9 +24,6 @@ public class Inventory extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-
         });
-
-
     }
 }
