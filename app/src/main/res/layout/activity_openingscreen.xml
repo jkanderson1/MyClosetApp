@@ -49,4 +49,15 @@
         app:layout_constraintTop_toBottomOf="@+id/openingScreenLogin"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="141dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textID"
+        app:srcCompat="@drawable/hanger" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
