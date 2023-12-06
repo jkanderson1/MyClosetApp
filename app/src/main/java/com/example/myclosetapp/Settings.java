@@ -10,7 +10,7 @@ import android.content.Intent;
 
 public class Settings extends AppCompatActivity {
 
-    public Button Preferences;
+    public Button Preferences, logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,16 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Preferences.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        logout = findViewById(R.id.LogoutButton);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getApplicationContext(),
+                        OpeningScreen.class);
                 startActivity(intent);
                 finish();
             }

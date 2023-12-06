@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
+        app:layout_constraintVertical_bias="0.554" />
 
     <TextView
         android:id="@+id/SettingsTV"
@@ -36,10 +36,21 @@
         android:id="@+id/PrefButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="104dp"
         android:text="Preferences"
         app:layout_constraintBottom_toTopOf="@+id/switch1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/LogoutButton"
+        android:layout_width="102dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="100dp"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
