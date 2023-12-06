@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">My Closet</string>
-    <string name ="AddItem">Add Item</string>
-    <string name ="colorHint">Colors</string>
+    <string name="AddItem">Add Item</string>
+    <string name="colorHint">Colors</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
     <string name="email">Email</string>

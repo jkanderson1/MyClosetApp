@@ -70,6 +70,8 @@ public class AddImage extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void uploadImage() {

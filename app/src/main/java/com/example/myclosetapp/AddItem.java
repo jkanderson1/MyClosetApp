@@ -15,7 +15,8 @@ import android.widget.ViewSwitcher;
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
     ViewSwitcher swichFavs;
-    Button toAddImage;
+
+    Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
     TextView myCloset;
@@ -34,9 +35,18 @@ public class AddItem extends AppCompatActivity {
 
             }
         });
+        settings = findViewById(R.id.button3);
+        settings.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(getApplicationContext(), Settings.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+        });
 
-        toAddImage = findViewById(R.id.addImageButton);
-        toAddImage.setOnClickListener(new View.OnClickListener() {
+        finished = findViewById(R.id.addImageButton);
+        finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(getApplicationContext(), AddImage.class);
@@ -44,10 +54,14 @@ public class AddItem extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
     }
 
     protected void favoriteMe(ImageButton favorite, ImageButton notFavorite){
         // TODO: idk if this makes any sort of sense
     }
+
 
 }
