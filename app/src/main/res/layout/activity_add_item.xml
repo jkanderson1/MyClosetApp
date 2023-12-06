@@ -134,9 +134,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="84dp"
+            android:contentDescription="Item has been added to favorites"
             android:visibility="visible"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            android:contentDescription="Item has been added to favorites"/>
+            app:srcCompat="@android:drawable/btn_star_big_on" />
     </ViewSwitcher>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="71dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintEnd_toStartOf="@+id/addItemAppName"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hanger" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
