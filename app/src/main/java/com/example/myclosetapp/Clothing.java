@@ -26,7 +26,6 @@ public class Clothing {
 
     private DatabaseReference closet = FirebaseDatabase.getInstance().getReference();
 
-    // TODO: Connect clothing to firebase
 
     /**
      * Initializes a new instance of a clothing item with only an

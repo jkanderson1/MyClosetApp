@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,8 +15,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewSwitcher;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,7 @@ public class AddItem extends AppCompatActivity {
     TextView myCloset;
     Clothing clothing;
     String[] types,styles;
+    TextInputEditText colorInput;
 
 
 
@@ -49,22 +53,37 @@ public class AddItem extends AppCompatActivity {
 
             clothing = new Clothing();
 
+        clothing.setColors(colors);
+        clothing.setSeasons(seasons);
+        clothing.setStyles(style);
 
 
-        swichFavs = (ViewSwitcher)findViewById(R.id.addItemSwitchFavorite);
+
+        favoriteMe();
+        getColors();
+        setStyleSpinner();
         setTypeSpinner();
+        finishActivity();
+    }
 
-        finished = findViewById(R.id.addItemFinished);
+    private void setStyleSpinner() {
+    }
+
+    private void getColors() {
+        colorInput = findViewById(R.id.addItemColorTextInputEditText);
+        // TODO: how to read input from text input
+    }
+
+    private void finishActivity(){
+        finished = findViewById(R.id.addItemToAddImage);
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clothing.setColors(colors);
-                clothing.setSeasons(seasons);
-                clothing.setStyles(style);
+                /**/
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
                     Intent intent  = new Intent(getApplicationContext(),
-                            HomeScreen.class);
+                            AddImage.class);
                     startActivity(intent);
                     finish();
                 }
@@ -92,8 +111,33 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
-    protected void favoriteMe(ImageButton favorite, ImageButton notFavorite){
-        clothing.setFavorite(true);
+    private void favoriteMe(){
+        swichFavs = (ViewSwitcher)findViewById(R.id.addItemSwitchFavorite);
+        favFalse = findViewById(R.id.addItemisFavFalse);
+        favTrue = findViewById(R.id.addItemisFavTrue);
+
+        Animation in = AnimationUtils.loadAnimation(this,
+                android.R.anim.fade_in);
+        Animation out = AnimationUtils.loadAnimation(this,
+                android.R.anim.fade_out);
+
+        swichFavs.setInAnimation(in);
+        swichFavs.setOutAnimation(out);
+
+        favFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clothing.setFavorite(true);
+                swichFavs.showNext();
+            }
+        });
+        favTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clothing.setFavorite(false);
+                swichFavs.showPrevious();
+            }
+        });
     }
 
 
