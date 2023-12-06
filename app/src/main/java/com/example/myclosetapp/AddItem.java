@@ -3,13 +3,17 @@ package com.example.myclosetapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -29,7 +33,7 @@ public class AddItem extends AppCompatActivity {
     TextView myCloset;
     Clothing clothing;
     String[] types,styles;
-    TextInputEditText colorInput;
+    EditText colorInput;
 
 
 
@@ -59,7 +63,7 @@ public class AddItem extends AppCompatActivity {
 
 
         favoriteMe();
-        getColors();
+        //getColors();
         setStyleSpinner();
         setTypeSpinner();
         finishActivity();
@@ -76,13 +80,29 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void setStyleSpinner() {
+
     }
 
-    private void getColors() {
+    /*private void getColors() {
         colorInput = findViewById(R.id.addItemColorTextInputEditText);
-        // TODO: how to read input from text input
-    }
+
+       colorInput.setOnEditorActionListener(new TextView
+       .OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                ArrayList<String> colors = new ArrayList<String>();
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    colors.add(v.getText().toString());
+                    clothing.setColors(colors);
+                    handled = true;
+                }
+                return false;
             }
+        });
+    }*/
+
 
 
     private void finishActivity(){
@@ -90,11 +110,11 @@ public class AddItem extends AppCompatActivity {
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**/
+
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
                     Intent intent  = new Intent(getApplicationContext(),
-                            AddImage.class);
+                            HomeScreen.class);
                     startActivity(intent);
                     finish();
                 }
@@ -120,8 +140,6 @@ public class AddItem extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 

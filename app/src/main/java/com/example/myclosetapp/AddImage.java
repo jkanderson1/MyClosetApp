@@ -27,7 +27,7 @@ import java.util.Locale;
 
 public class AddImage extends AppCompatActivity {
 
-   ActivityAddImageBinding binding;
+    ActivityAddImageBinding binding;
     Uri imageUri;
     StorageReference storageReference;
 

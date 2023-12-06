@@ -106,7 +106,8 @@
                 android:id="@+id/addItemColorTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/colorHint" />
+                android:hint="@string/colorHint"
+                android:inputType="textCapWords|textAutoComplete|textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
