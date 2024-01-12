@@ -22,14 +22,14 @@ import java.util.ArrayList;
 
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
-    ViewSwitcher switchFavs;
+    ViewSwitcher swichFavs;
     Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
     TextView myCloset;
     Clothing clothing;
     String[] types,styles;
-    TextInputEditText colorInput;
+    EditText colorInput;
 
 
     @Override
@@ -38,33 +38,32 @@ public class AddItem extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
 
         // For testing purposes
-           /* ArrayList<String> colors = new ArrayList<>();
+            ArrayList<String> colors = new ArrayList<>();
             colors.add("Blue");
-            colors.add("White");*/
+            colors.add("White");
             String pictureId = "2";
             ArrayList<String> seasons = new ArrayList<>();
             seasons.add("Spring");
             seasons.add("Summer");
-
+            ArrayList<String> style = new ArrayList<>();
+            style.add("Business Casual");
+            style.add("Business Formal");
 
             clothing = new Clothing();
 
-        //clothing.setColors(colors);
+        clothing.setColors(colors);
         clothing.setSeasons(seasons);
-        clothing.setPictureID(pictureId);
+        clothing.setStyles(style);
 
 
 
         favoriteMe();
-        getColors();
+        //getColors();
         setStyleSpinner();
         setTypeSpinner();
         finishActivity();
-        createSettings();
-    }
 
-    private void createSettings(){
-        settings = findViewById(R.id.addItemToSettings);
+        settings = findViewById(R.id.button3);
         settings.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -88,50 +87,30 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
-    private void getColors(){
-        colorInput = findViewById(R.id.addItemColorTextInputEditText);
-        if (colorInput.getText() != null) {
-            String addME = String.valueOf(colorInput.getText());
-            ArrayList<String> addColor = new ArrayList<>();
-            addColor.add(addME);
-            clothing.setColors(addColor);
-        }
-
+    private void setStyleSpinner() {
 
     }
 
-    private void setStyleSpinner() {
-        styleSpinner = findViewById(R.id.addItemStyleSpinner);
-        styles = getResources().getStringArray(R.array.ClothingStyles);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, styles);
-        styleSpinner.setAdapter(adapter);
-        styleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    /*private void getColors() {
+        colorInput = findViewById(R.id.addItemColorTextInputEditText);
 
-                String[] temp =
-                        getResources().getStringArray(R.array.ClothingStyles);
-                ArrayList<String> selected = new ArrayList<>();
-                for (String x:temp){
-                    if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(x)){
-                        selected.add(x);
-                    }
+       colorInput.setOnEditorActionListener(new TextView
+       .OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                ArrayList<String> colors = new ArrayList<String>();
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    colors.add(v.getText().toString());
+                    clothing.setColors(colors);
+                    handled = true;
                 }
-                /*for (int i = 0; i< temp.length; i++){
-                    if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(temp[i])){
-                        selected.add(temp[i]);
-                    }
-                }*/
-                clothing.setStyles(selected);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+                return false;
             }
         });
-    }
+    }*/
+
 
 
     private void finishActivity(){
@@ -173,7 +152,7 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void favoriteMe(){
-        switchFavs = (ViewSwitcher)findViewById(R.id.addItemSwitchFavorite);
+        swichFavs = (ViewSwitcher)findViewById(R.id.addItemSwitchFavorite);
         favFalse = findViewById(R.id.addItemisFavFalse);
         favTrue = findViewById(R.id.addItemisFavTrue);
 
@@ -182,21 +161,21 @@ public class AddItem extends AppCompatActivity {
         Animation out = AnimationUtils.loadAnimation(this,
                 android.R.anim.fade_out);
 
-        switchFavs.setInAnimation(in);
-        switchFavs.setOutAnimation(out);
+        swichFavs.setInAnimation(in);
+        swichFavs.setOutAnimation(out);
 
         favFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clothing.setFavorite(true);
-                switchFavs.showNext();
+                swichFavs.showNext();
             }
         });
         favTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clothing.setFavorite(false);
-                switchFavs.showPrevious();
+                swichFavs.showPrevious();
             }
         });
     }
@@ -205,7 +184,7 @@ public class AddItem extends AppCompatActivity {
     private void setTypeSpinner(){
         typeSpinner = findViewById(R.id.addItemTypeSpinner);
         types = getResources().getStringArray(R.array.ClothingType);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, types);
         typeSpinner.setAdapter(adapter);
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
