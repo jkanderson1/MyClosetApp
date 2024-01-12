@@ -58,12 +58,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addImageButton"
+        android:id="@+id/addItemToAddImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/add_image"
+        android:text="@string/AddImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemColorLayout"
@@ -83,6 +83,7 @@
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
+        android:prompt="@string/typeHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,40 +105,76 @@
             android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addItemColorTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/colorHint" />
+                android:hint="@string/colorHint"
+                android:inputType="textCapWords|textAutoComplete|textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
     <ViewSwitcher
+        android:id="@+id/addItemSwitchFavorite"
         android:layout_width="99dp"
         android:layout_height="83dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addImageButton"
+        app:layout_constraintEnd_toStartOf="@+id/addItemToAddImage"
         app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemColorLayout"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageButton
-            android:id="@+id/addItemisFavFalse"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="85dp"
-            android:layout_marginBottom="72dp"
-            android:contentDescription="Add item to favorites"
-            app:srcCompat="@android:drawable/btn_star_big_off" />
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/addItemisFavTrue"
+            <ImageButton
+                android:id="@+id/addItemisFavFalse"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/removeFromFavsHint"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/btn_star_big_off"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="84dp"
-            android:visibility="visible"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            android:contentDescription="Item has been added to favorites"/>
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/addItemisFavTrue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/addToFavHint"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/btn_star_big_on"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ViewSwitcher>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="71dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintEnd_toStartOf="@+id/addItemAppName"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hanger" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

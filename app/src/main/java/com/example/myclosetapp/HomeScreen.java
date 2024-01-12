@@ -11,7 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeScreen extends AppCompatActivity {
     FloatingActionButton addItem;
-     Button settings;
+     Button settings, inventory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,16 @@ public class HomeScreen extends AppCompatActivity {
                 finish();
             }
 
+        });
+
+        inventory = findViewById(R.id.inventoryButton);
+        inventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Inventory.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
 
