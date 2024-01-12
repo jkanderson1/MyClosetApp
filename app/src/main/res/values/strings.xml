@@ -14,6 +14,7 @@
     <string name ="removeFromFavsHint">Remove item from favorites</string>
     <string name = "AddImage">Add Image</string>
     <string-array name="ClothingStyles">
+        <item>Select Clothing Style</item>
         <item>Business Casual</item>
         <item>Athletic</item>
         <item>Casual</item>
@@ -24,6 +25,4 @@
         <item>Bottom</item>
         <item>Shoe</item>
     </string-array>
-
->>>>>>> refs/remotes/origin/master
 </resources>

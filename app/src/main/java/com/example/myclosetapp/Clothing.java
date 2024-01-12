@@ -71,6 +71,12 @@ public class Clothing {
         return Integer.toString(random.nextInt());
     }
 
+    public void addColorToArray(String color){
+       if (this.colors == null){
+           this.colors = new ArrayList<>();
+       }
+       this.colors.add(color);
+    }
     /**
      * sets colors array
      * @param colors
