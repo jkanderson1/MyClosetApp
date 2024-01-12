@@ -3,17 +3,13 @@ package com.example.myclosetapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -31,7 +27,7 @@ public class AddItem extends AppCompatActivity {
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
     TextView myCloset;
-    Clothing clothing1;
+    Clothing clothing;
     String[] types,styles;
     EditText colorInput;
 
@@ -54,11 +50,11 @@ public class AddItem extends AppCompatActivity {
             style.add("Business Casual");
             style.add("Business Formal");
 
-            clothing1 = new Clothing();
+            clothing = new Clothing();
 
-        clothing1.setColors(colors);
-        clothing1.setSeasons(seasons);
-        clothing1.setStyles(style);
+        clothing.setColors(colors);
+        clothing.setSeasons(seasons);
+        clothing.setStyles(style);
 
 
 
@@ -111,8 +107,8 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!clothing1.getType().isEmpty() && !clothing1.getColors().isEmpty() && !clothing1.getStyles().isEmpty()){
-                    clothing1.addToCloset();
+                if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
+                    clothing.addToCloset();
                     Intent intent  = new Intent(getApplicationContext(),
                             HomeScreen.class);
                     startActivity(intent);
@@ -159,14 +155,14 @@ public class AddItem extends AppCompatActivity {
         favFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clothing1.setFavorite(true);
+                clothing.setFavorite(true);
                 swichFavs.showNext();
             }
         });
         favTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clothing1.setFavorite(false);
+                clothing.setFavorite(false);
                 swichFavs.showPrevious();
             }
         });
@@ -184,11 +180,11 @@ public class AddItem extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if(parent.getItemAtPosition(position).toString().equalsIgnoreCase(ClothingType.BOTTOM.toString())){
-                    clothing1.setType(ClothingType.BOTTOM);
+                    clothing.setType(ClothingType.BOTTOM);
                 } else if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(ClothingType.TOP.toString())){
-                    clothing1.setType(ClothingType.TOP);
+                    clothing.setType(ClothingType.TOP);
                 } else if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(ClothingType.SHOE.toString())){
-                    clothing1.setType(ClothingType.SHOE);
+                    clothing.setType(ClothingType.SHOE);
                 }else {
                     onNothingSelected(parent);
                 }

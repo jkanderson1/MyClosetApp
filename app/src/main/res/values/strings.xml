@@ -13,6 +13,7 @@
     <string name ="removeFromFavsHint">Remove item from favorites</string>
     <string name = "AddImage">Add Image</string>
     <string-array name="ClothingStyles">
+        <item>Select Clothing Style</item>
         <item>Business Casual</item>
         <item>Athletic</item>
         <item>Casual</item>
