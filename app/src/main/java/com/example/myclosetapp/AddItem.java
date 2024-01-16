@@ -29,7 +29,7 @@ public class AddItem extends AppCompatActivity {
     TextView myCloset;
     Clothing clothing;
     String[] types,styles;
-    EditText colorInput;
+    //EditText colorInput;
 
 
     @Override
@@ -57,13 +57,13 @@ public class AddItem extends AppCompatActivity {
 
 
 
-        favoriteMe();
+        //favoriteMe();
         //getColors();
-        setStyleSpinner();
-        setTypeSpinner();
-        finishActivity();
+        //setStyleSpinner();
+        //setTypeSpinner();
+        //finishActivity();
 
-        settings = findViewById(R.id.button3);
+        //settings = findViewById(R.id.button3);
         settings.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -73,14 +73,14 @@ public class AddItem extends AppCompatActivity {
                                         }
         });
 
-        finished = findViewById(R.id.addImageButton);
+        //finished = findViewById(R.id.addImageButton);
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(getApplicationContext(), AddImage.class);
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Settings.class);
+           // @Override
+            //public void onClick(View v) {
+                //Intent intent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(intent);
                 finish();
             }
