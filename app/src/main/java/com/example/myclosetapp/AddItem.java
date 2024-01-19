@@ -1,5 +1,8 @@
 package com.example.myclosetapp;
 
+
+import static android.app.PendingIntent.getActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -29,7 +33,7 @@ public class AddItem extends AppCompatActivity {
     TextView myCloset;
     Clothing clothing;
     String[] types,styles;
-    TextInputEditText colorInput;
+    EditText colorInput;
 
 
 
@@ -77,15 +81,19 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void getColors(){
-        colorInput = findViewById(R.id.addItemColorTextInputEditText);
-        if (colorInput.getText() != null) {
-            String addME = String.valueOf(colorInput.getText());
+        // TODO: figure out why the text input isnt working :((((
+        colorInput =
+                (EditText)this.findViewById(R.id.addItemColorInput);
+        String addMe = "n/a";
+        addMe = colorInput.getText().toString();
+        clothing.addColorToArray(addMe);
+
+       /* if (!colorInput.getText().equals("")) {
+            String addMe = colorInput.getText().toString();
             ArrayList<String> addColor = new ArrayList<>();
-            addColor.add(addME);
+            addColor.add(addMe);
             clothing.setColors(addColor);
-        }
-
-
+        }*/
     }
 
     private void setStyleSpinner() {
@@ -102,6 +110,7 @@ public class AddItem extends AppCompatActivity {
                         getResources().getStringArray(R.array.ClothingStyles);
                 ArrayList<String> selected = new ArrayList<>();
                 for (String x:temp){
+                    // TODO: figure out how to input multiple styles
                     if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(x)){
                         selected.add(x);
                     }
