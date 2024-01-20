@@ -50,9 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="109dp"
+        android:layout_marginBottom="108dp"
         android:text="Item description here"
-        app:layout_constraintBottom_toTopOf="@+id/addItemStyleSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/addItemTypeSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,24 +69,15 @@
         app:layout_constraintVertical_bias="0.988" />
 
     <Spinner
-        android:id="@+id/addItemStyleSpinner"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItemImage" />
-
-    <Spinner
         android:id="@+id/addItemTypeSpinner"
         android:layout_width="400dp"
         android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        android:prompt="@string/typeHint"
+        android:layout_marginTop="59dp"
+        android:hint="@string/typeHint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItemStyleSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/addItemImage" />
 
     <TextView
         android:id="@+id/addItemColorTV"
@@ -101,9 +92,28 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toTopOf="@+id/addItemToAddImage"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemTypeSpinner"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.192" />
+
+    <TextView
+        android:id="@+id/addItemStyleTV"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawableRight="@android:drawable/arrow_down_float"
+        android:drawablePadding="16dp"
+        android:hint="@string/styleHint"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/addItemToAddImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addItemColorTV"
+        app:layout_constraintVertical_bias="0.276" />
 
     <ViewSwitcher
         android:id="@+id/addItemSwitchFavorite"

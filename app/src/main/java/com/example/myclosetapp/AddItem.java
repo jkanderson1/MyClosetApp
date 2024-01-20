@@ -33,8 +33,9 @@ public class AddItem extends AppCompatActivity {
     ViewSwitcher switchFavs;
     Button finished, settings;
     ImageView itemPicture;
-    Spinner typeSpinner, styleSpinner;
-    TextView myCloset, colorInput;
+    Spinner typeSpinner;
+
+    TextView myCloset, colorInput, styleInput;
     Clothing clothing;
     String[] types,styles,colors;
     ArrayAdapter<String> adapter;
@@ -47,6 +48,9 @@ public class AddItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
+        myCloset = findViewById(R.id.addItemAppName);
+        itemPicture = findViewById(R.id.addItemImage);
+
         // For testing purposes
             String pictureId = "2";
             ArrayList<String> seasons = new ArrayList<>();
@@ -56,7 +60,6 @@ public class AddItem extends AppCompatActivity {
 
             clothing = new Clothing();
 
-        //clothing.setColors(colors);
         clothing.setSeasons(seasons);
         clothing.setPictureID(pictureId);
 
@@ -64,10 +67,10 @@ public class AddItem extends AppCompatActivity {
 
         favoriteMe();
         getColors();
-        setStyleSpinner();
+        getStyles();
         setTypeSpinner();
-        finishActivity();
         createSettings();
+        finishActivity();
     }
 
     private void createSettings(){
@@ -136,40 +139,60 @@ public class AddItem extends AppCompatActivity {
 
     }
 
-    private void setStyleSpinner() {
-        styleSpinner = findViewById(R.id.addItemStyleSpinner);
+    private void getStyles(){
+        styleInput = findViewById(R.id.addItemStyleTV);
         styles = getResources().getStringArray(R.array.ClothingStyles);
-        adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, styles);
-        styleSpinner.setAdapter(adapter);
-        styleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        boolean[] selectedStyles = new boolean[styles.length];
+        ArrayList<Integer> stylesList = new ArrayList<>();
+
+        styleInput.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String[] temp =
-                        getResources().getStringArray(R.array.ClothingStyles);
-                ArrayList<String> selected = new ArrayList<>();
-                for (String x:temp){
-                    // TODO: figure out how to input multiple styles
-                    if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(x)){
-                        selected.add(x);
+            public void onClick(View v) {
+                AlertDialog.Builder builder=
+                        new AlertDialog.Builder(AddItem.this);
+                builder.setTitle(R.string.styleHint);
+                builder.setCancelable(false);
+                builder.setMultiChoiceItems(styles, selectedStyles,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if(isChecked){
+                            stylesList.add(which);
+                            Collections.sort(stylesList);
+                        } else {
+                            stylesList.remove(Integer.valueOf(which));
+                        }
                     }
-                }
-                /*for (int i = 0; i< temp.length; i++){
-                    if (parent.getItemAtPosition(position).toString().equalsIgnoreCase(temp[i])){
-                        selected.add(temp[i]);
+                });
+
+                builder.setPositiveButton(R.string.Okay, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int i = 0; i < stylesList.size(); i++){
+                            stringBuilder.append(styles[stylesList.get(i)]);
+                            clothing.addSylesToArray(styles[stylesList.get(i)]);
+
+                            if (i != stylesList.size() -1){
+                                stringBuilder.append("\n");
+                            }
+                        }
+                        styleInput.setText(stringBuilder.toString());
                     }
-                }*/
-                clothing.setStyles(selected);
-            }
+                });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        clothing.clearStyleArray();
+                        dialog.dismiss();
+                    }
+                });
 
+                builder.show();
             }
         });
     }
-
 
     private void finishActivity(){
         finished = findViewById(R.id.addItemToAddImage);

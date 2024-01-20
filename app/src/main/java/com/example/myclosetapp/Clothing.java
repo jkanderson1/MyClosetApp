@@ -11,18 +11,14 @@ public class Clothing {
     private final String ITEMS = "Items";
     private String identification;   // randomly generated string to identify
     // item in firebase
-    private ArrayList<String> colors;    // array list of colors in the item
-    private ArrayList<String> seasons;   // arraylist of seasons appropriate
-    // for item
-    private ArrayList<String> styles;    // arraylist of Styles appropriate
-    // for item
+    private ArrayList<String>
+            colors, // array list of colors in the item
+            seasons, // arraylist of seasons appropriate for item
+            styles;   // arraylist of Styles appropriate for item
     private String pictureID;   // randomly generated string identification of
     // associated image
     private Boolean favorite;    // if the item is favorited
     private String type;
-
-
-
 
     private DatabaseReference closet = FirebaseDatabase.getInstance().getReference();
 
@@ -80,6 +76,17 @@ public class Clothing {
 
     public void clearColorArray(){
         this.colors = null;
+    }
+
+    public void addSylesToArray(String style){
+        if (this.styles == null){
+            this.styles = new ArrayList<>();
+        }
+        this.styles.add(style);
+    }
+
+    public void clearStyleArray(){
+        this.styles = null;
     }
     /**
      * sets colors array
