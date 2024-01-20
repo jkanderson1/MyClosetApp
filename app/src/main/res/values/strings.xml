@@ -7,6 +7,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="my_closet">My Closet</string>
+    <string name="add_image">Add Image</string>
     <string name ="typeHint">Enter Clothing Type</string>
     <string name ="styleHint">Select Clothing Style(s)</string>
     <string name="addToFavHint">Add item to favorites</string>
@@ -38,5 +39,4 @@
         <item>Bottom</item>
         <item>Shoe</item>
     </string-array>
-
 </resources>
