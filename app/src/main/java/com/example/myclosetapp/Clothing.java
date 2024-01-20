@@ -77,6 +77,10 @@ public class Clothing {
        }
        this.colors.add(color);
     }
+
+    public void clearColorArray(){
+        this.colors = null;
+    }
     /**
      * sets colors array
      * @param colors

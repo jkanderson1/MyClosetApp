@@ -12,11 +12,25 @@
     <string name="addToFavHint">Add item to favorites</string>
     <string name ="removeFromFavsHint">Remove item from favorites</string>
     <string name = "AddImage">Add Image</string>
+    <string name = "Okay">OK</string>
+    <string name ="Cancel">Cancel</string>
+    <string name ="CancelAll">Cancel All</string>
+    <string-array name="ColorOptions">
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Purple</item>
+        <item>Pink</item>
+        <item>Orange</item>
+        <item>Black</item>
+        <item>White</item>
+    </string-array>
     <string-array name="ClothingStyles">
         <item>Select Clothing Style</item>
         <item>Business Casual</item>
         <item>Athletic</item>
         <item>Casual</item>
+        <item>Formal</item>
     </string-array>
     <string-array name="ClothingType">
         <item>Select Clothing Type</item>

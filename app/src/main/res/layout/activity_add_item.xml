@@ -88,37 +88,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemStyleSpinner" />
 
-    <!--<com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/addItemColorLayout"
+    <TextView
+        android:id="@+id/addItemColorTV"
         android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItemTypeSpinner">
-
-       <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/addItemColorTextInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/colorHint" />
-
-    </com.google.android.material.textfield.TextInputLayout> -->
-
-    <EditText
-        android:id="@+id/addItemColorInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawableRight="@android:drawable/arrow_down_float"
+        android:drawablePadding="16dp"
         android:hint="@string/colorHint"
-         app:layout_constraintBottom_toTopOf="@+id/addItemToAddImage"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/addItemToAddImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemTypeSpinner"
-        app:layout_constraintVertical_bias="0.15">
-
-    </EditText>
+        app:layout_constraintVertical_bias="0.244" />
 
     <ViewSwitcher
         android:id="@+id/addItemSwitchFavorite"

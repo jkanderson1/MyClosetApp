@@ -5,6 +5,8 @@ import static android.app.PendingIntent.getActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,8 @@ import android.widget.ViewSwitcher;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
@@ -30,10 +34,11 @@ public class AddItem extends AppCompatActivity {
     Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner, styleSpinner;
-    TextView myCloset;
+    TextView myCloset, colorInput;
     Clothing clothing;
-    String[] types,styles;
-    EditText colorInput;
+    String[] types,styles,colors;
+    ArrayAdapter<String> adapter;
+
 
 
 
@@ -43,9 +48,6 @@ public class AddItem extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
 
         // For testing purposes
-           /* ArrayList<String> colors = new ArrayList<>();
-            colors.add("Blue");
-            colors.add("White");*/
             String pictureId = "2";
             ArrayList<String> seasons = new ArrayList<>();
             seasons.add("Spring");
@@ -81,25 +83,63 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void getColors(){
-        // TODO: figure out why the text input isnt working :((((
-        colorInput =
-                (EditText)this.findViewById(R.id.addItemColorInput);
-        String addMe = "n/a";
-        addMe = colorInput.getText().toString();
-        clothing.addColorToArray(addMe);
+        colorInput = findViewById(R.id.addItemColorTV);
+        colors = getResources().getStringArray(R.array.ColorOptions);
+        boolean[] selectedColors = new boolean[colors.length];
+        ArrayList<Integer> colorList = new ArrayList<>();
+        colorInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder=
+                        new AlertDialog.Builder(AddItem.this);
+                builder.setTitle(R.string.colorHint);
+                builder.setCancelable(false);
+                builder.setMultiChoiceItems(colors, selectedColors, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if(isChecked){
+                            colorList.add(which);
+                            Collections.sort(colorList);
+                        } else {
+                            colorList.remove(Integer.valueOf(which));
+                        }
+                    }
+                });
 
-       /* if (!colorInput.getText().equals("")) {
-            String addMe = colorInput.getText().toString();
-            ArrayList<String> addColor = new ArrayList<>();
-            addColor.add(addMe);
-            clothing.setColors(addColor);
-        }*/
+                builder.setPositiveButton(R.string.Okay, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int i = 0; i<colorList.size(); i++){
+                            stringBuilder.append(colors[colorList.get(i)]);
+                            clothing.addColorToArray(colors[colorList.get(i)]);
+
+                            if (i != colorList.size() -1){
+                                stringBuilder.append("\n");
+                            }
+                        }
+                        colorInput.setText(stringBuilder.toString());
+                    }
+                });
+
+                builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        clothing.clearColorArray();
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
+            }
+        });
+
     }
 
     private void setStyleSpinner() {
         styleSpinner = findViewById(R.id.addItemStyleSpinner);
         styles = getResources().getStringArray(R.array.ClothingStyles);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, styles);
         styleSpinner.setAdapter(adapter);
         styleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -202,7 +242,7 @@ public class AddItem extends AppCompatActivity {
     private void setTypeSpinner(){
         typeSpinner = findViewById(R.id.addItemTypeSpinner);
         types = getResources().getStringArray(R.array.ClothingType);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, types);
         typeSpinner.setAdapter(adapter);
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
