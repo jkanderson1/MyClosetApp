@@ -23,12 +23,16 @@ play button at the top of the screen in order to the app
 # Deployment 
 
 # Testing
-
+For loginTest & registrationTest, run (ctrl + shift + F10)
 ## Testing Technology
-
+JUnit 4 & Mockito Android Library
 ## Running Tests
-
-
+Under 
+-app
+  -src
+    -main
+    -test/java/com/example/myclosetapp
+For loginTest & registrationTest, run (ctrl + shift + F10)
 # Authors
 Christina Desmangles desmangc@email.sc.edu 
 
