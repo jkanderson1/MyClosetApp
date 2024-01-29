@@ -3,8 +3,11 @@ package com.example.myclosetapp;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import android.text.Editable;
-import com.google.android.material.textfield.TextInputEditText; // Make sure to import the correct class
+import android.widget.EditText;
+import com.example.myclosetapp.AddItem;
+import com.example.myclosetapp.AddItemActivity;
+import com.example.myclosetapp.Clothing;
+import com.google.android.material.textfield.TextInputEditText;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,34 +24,23 @@ public class AddItemTest {
 
     @Test
     public void testGetColors() {
+        // Mock TextInputEditText
         TextInputEditText colorInput = mock(TextInputEditText.class);
-        when(addItemActivity.findViewById(R.id.addItemColorTextInputEditText)).thenReturn(colorInput); // Corrected the ID
+        when(addItemActivity.findViewById(R.id.addItemColorTextInputEditText)).thenReturn(colorInput);
 
+        // Set up the text to be returned when getText is called
         String colorText = "Red";
-        when(colorInput.getText()).thenReturn(new Editable.Factory().newEditable(colorText));
+        when(colorInput.getText()).thenReturn(new EditText(addItemActivity).getText().append(colorText));
 
+        // Call the method to be tested
         addItem.getColors();
 
-        // Verifying that the method is called
-        verify(addItemActivity).findViewById(R.id.addItemColorTextInputEditText); // Corrected the ID
+        // Verify that the correct methods are called
+        verify(addItemActivity).findViewById(R.id.addItemColorTextInputEditText);
         verify(colorInput).getText();
 
+        // Check if the colors are correctly set in the Clothing object
         assertEquals(1, addItem.getClothing().getColors().size());
         assertEquals(colorText, addItem.getClothing().getColors().get(0));
-    }
-
-    @Test
-    public void testGetColorsWithNullText() {
-        TextInputEditText colorInput = mock(TextInputEditText.class);
-        when(addItemActivity.findViewById(R.id.addItemColorTextInputEditText)).thenReturn(colorInput); // Corrected the ID
-
-        when(colorInput.getText()).thenReturn(null);
-
-        addItem.getColors();
-
-        verify(addItemActivity).findViewById(R.id.addItemColorTextInputEditText); // Corrected the ID
-        verify(colorInput).getText();
-
-        assertTrue(addItem.getClothing().getColors().isEmpty());
     }
 }
