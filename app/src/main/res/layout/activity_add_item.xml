@@ -58,12 +58,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addItemToAddImage"
+        android:id="@+id/addImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/AddItem"
+        android:text="@string/AddImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addItemColorLayout"
@@ -114,7 +114,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addItemToAddImage"
+        app:layout_constraintEnd_toStartOf="@+id/addImage"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible">
 
