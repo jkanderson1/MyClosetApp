@@ -13,13 +13,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class Inventory extends AppCompatActivity {
 
     public Button settings;
-    public Button AddItem;
+    private Button addItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        AddItem = (Button) findViewById(R.id.addItemTV);
+
         settings = (Button) findViewById(R.id.button1);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,14 +31,18 @@ public class Inventory extends AppCompatActivity {
 
         });
 
-        AddItem.setOnClickListener(new View.OnClickListener() {
+        addItem = (Button) findViewById(R.id.addItemTV);
+        addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddItem.class);
                 startActivity(intent);
                 finish();
             }
-        });
+        }); {
+
+        }
+
 
     }
 }

@@ -22,8 +22,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -195,7 +193,7 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void finishActivity(){
-        finished = findViewById(R.id.addItemToAddImage);
+        finished = findViewById(R.id.addImage);
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,7 +201,7 @@ public class AddItem extends AppCompatActivity {
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
                     Intent intent  = new Intent(getApplicationContext(),
-                            HomeScreen.class);
+                            AddImage.class);
                     startActivity(intent);
                     finish();
                 }
