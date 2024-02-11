@@ -48,6 +48,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.firebase:firebase-auth:21.1.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("androidx.palette:palette:1.0.0")
+    implementation("com.google.firebase:firebase-firestore:24.10.2")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation ("org.mockito:mockito-core:3.12.4")
