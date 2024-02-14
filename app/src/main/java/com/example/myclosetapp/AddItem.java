@@ -201,7 +201,7 @@ public class AddItem extends AppCompatActivity {
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
                     Intent intent  = new Intent(getApplicationContext(),
-                            AddImage.class);
+                            HomeScreen.class);
                     startActivity(intent);
                     finish();
                 }
