@@ -22,7 +22,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext(),
-                        AddImage.class);
+                        AddItem.class);
                 startActivity(intent);
                 finish();
             }

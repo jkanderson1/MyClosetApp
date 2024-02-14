@@ -83,7 +83,7 @@ public class AddImage extends AppCompatActivity {
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddItem.class);
+                Intent intent = new Intent(getApplicationContext(), Inventory.class);
                 startActivity(intent);
                 finish();
             }
