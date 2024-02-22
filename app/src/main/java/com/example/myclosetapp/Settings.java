@@ -45,9 +45,7 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Intent intent = new Intent(Settings.this, HomeScreen.class);
-               // Intent intent1 = new Intent(Settings.this, AddItem.class);
                startActivity(intent);
-              // startActivity(intent1);
                finish();
             }
        });
