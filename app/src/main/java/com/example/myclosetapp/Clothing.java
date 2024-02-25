@@ -9,17 +9,9 @@ import java.util.Random;
 public class Clothing {
 
     private final String ITEMS = "Items";
-    private String identification;   // randomly generated string to identify
-    // item in firebase
-    private ArrayList<String> colors;    // array list of colors in the item
-    private ArrayList<String> seasons;   // arraylist of seasons appropriate
-    // for item
-    private ArrayList<String> styles;    // arraylist of Styles appropriate
-    // for item
-    private String pictureID;   // randomly generated string identification of
-    // associated image
-    private Boolean favorite;    // if the item is favorited
-    private String type;
+    private ArrayList<String> colors, seasons, styles;
+    private String identification, pictureID, type;
+    private Boolean favorite;
     private static Closet myCloset = Closet.getInstance();
 
 
@@ -76,6 +68,13 @@ public class Clothing {
             this.styles = new ArrayList<>();
         }
         this.styles.add(style);
+    }
+
+    public void addSeasonsToArray(String season){
+        if (this.seasons == null){
+            this.seasons = new ArrayList<>();
+        }
+        this.seasons.add(season);
     }
 
     /**

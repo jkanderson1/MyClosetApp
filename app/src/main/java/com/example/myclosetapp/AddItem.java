@@ -27,9 +27,9 @@ public class AddItem extends AppCompatActivity {
     Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner;
-    TextView myCloset, styleInput,colorInput;
+    TextView myCloset, styleInput,colorInput,seasonInput;
     Clothing clothing;
-    String[] types,styles,colors;
+    String[] types,styles,colors,seasons;
 
 
 
@@ -40,14 +40,7 @@ public class AddItem extends AppCompatActivity {
 
         // For testing purposes
             String pictureId = "2";
-            ArrayList<String> seasons = new ArrayList<>();
-            seasons.add("Spring");
-            seasons.add("Summer");
-
-
             clothing = new Clothing();
-
-        clothing.setSeasons(seasons);
         clothing.setPictureID(pictureId);
 
 
@@ -55,7 +48,8 @@ public class AddItem extends AppCompatActivity {
         favoriteMe();
         showImage();
         getColors();
-        setStyleTV();
+        getStyles();
+        getSeasons();
         setTypeSpinner();
         finishActivity();
         createSettings();
@@ -78,6 +72,54 @@ public class AddItem extends AppCompatActivity {
         itemPicture = findViewById(R.id.addItemImage);
     }
 
+    private void getSeasons(){
+        seasonInput = findViewById(R.id.addItemSeasonsTV);
+        seasons = getResources().getStringArray(R.array.Seasons);
+        boolean[] selectedSeasons = new boolean[seasons.length];
+        ArrayList<Integer> seasonList = new ArrayList<>();
+
+        seasonInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(AddItem.this);
+                builder.setTitle(R.string.seasonsHint);
+                builder.setCancelable(false);
+                builder.setMultiChoiceItems(seasons, selectedSeasons, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if (isChecked){
+                            seasonList.add(which);
+                            Collections.sort(seasonList);
+                        } else {
+                            seasonList.remove(Integer.valueOf(which));
+                        }
+                    }
+                });
+                builder.setPositiveButton(R.string.Okay, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int i = 0; i < seasonList.size(); i++){
+                            stringBuilder.append(seasons[seasonList.get(i)]);
+                            clothing.addSeasonsToArray(seasons[seasonList.get(i)]);
+                            if (i != seasonList.size()-1){
+                                stringBuilder.append("\n");
+                            }
+                        }
+                        seasonInput.setText(stringBuilder.toString());
+                    }
+                });
+                builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
     private void getColors(){
         colorInput = findViewById(R.id.addItemColorTV);
         colors = getResources().getStringArray(R.array.ColorOptions);
@@ -127,19 +169,8 @@ public class AddItem extends AppCompatActivity {
             }
         });
     }
-    /*private void getColors(){
-        colorInput = findViewById(R.id.addItemColorTextInputEditText);
-        if (colorInput.getText() != null) {
-            String addME = String.valueOf(colorInput.getText());
-            ArrayList<String> addColor = new ArrayList<>();
-            addColor.add(addME);
-            clothing.setColors(addColor);
-        }
 
-
-    }*/
-
-    private void setStyleTV(){
+    private void getStyles(){
         styleInput = findViewById(R.id.addItemStyleTV);
         styles = getResources().getStringArray(R.array.ClothingStyles);
         boolean[] selectedStyles = new boolean[styles.length];
@@ -190,48 +221,10 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
-    private void finishActivity(){
-        finished = findViewById(R.id.addItemToAddImage);
-        finished.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
-                    clothing.addToCloset();
-                    Intent intent  = new Intent(getApplicationContext(),
-                            HomeScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
-                // TODO: force type, style, and color to be filled before
-                //  adding
-                /*else {
-                    if (clothing.getType().isEmpty()){
-                        Toast.makeText(getApplicationContext(),
-                                getResources().getText(R.string.typeHint), Toast.LENGTH_SHORT);
-
-                    }
-                    if (clothing.getStyles().isEmpty()){
-                        Toast.makeText(getApplicationContext(),
-                                getResources().getText(R.string.styleHint),
-                                Toast.LENGTH_SHORT);
-                    }
-                    if (clothing.getColors().isEmpty()) {
-                        Toast.makeText(getApplicationContext(),
-                                getResources().getText(R.string.colorHint),
-                                Toast.LENGTH_SHORT);
-                    }
-                }*/
-
-            }
-        });
-
-    }
-
     private void favoriteMe(){
         switchFavs = (ViewSwitcher)findViewById(R.id.addItemSwitchFavorite);
-        favFalse = findViewById(R.id.addItemisFavFalse);
-        favTrue = findViewById(R.id.addItemisFavTrue);
+        favFalse = findViewById(R.id.addItemIsFavFalse);
+        favTrue = findViewById(R.id.addItemIsFavTrue);
 
         Animation in = AnimationUtils.loadAnimation(this,
                 android.R.anim.fade_in);
@@ -285,5 +278,22 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
+    private void finishActivity(){
+        finished = findViewById(R.id.addItemToAddImage);
+        finished.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
+                    clothing.addToCloset();
+                    Intent intent  = new Intent(getApplicationContext(),
+                            HomeScreen.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+    }
 
 }
