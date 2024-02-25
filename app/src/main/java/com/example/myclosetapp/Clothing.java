@@ -46,7 +46,6 @@ public class Clothing {
      * @return identification
      */
     private String createID(){
-
         if (identification != null) {
             return identification;
         }
