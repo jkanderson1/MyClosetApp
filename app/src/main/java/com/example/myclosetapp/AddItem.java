@@ -1,11 +1,8 @@
 package com.example.myclosetapp;
 
-
-import static android.app.PendingIntent.getActivity;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +12,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -23,7 +19,6 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class AddItem extends AppCompatActivity {
@@ -32,12 +27,9 @@ public class AddItem extends AppCompatActivity {
     Button finished, settings;
     ImageView itemPicture;
     Spinner typeSpinner;
-
-    TextView myCloset, colorInput, styleInput;
+    TextView myCloset, styleInput,colorInput;
     Clothing clothing;
     String[] types,styles,colors;
-    ArrayAdapter<String> adapter;
-
 
 
 
@@ -45,9 +37,6 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
-
-        myCloset = findViewById(R.id.addItemAppName);
-        itemPicture = findViewById(R.id.addItemImage);
 
         // For testing purposes
             String pictureId = "2";
@@ -64,11 +53,12 @@ public class AddItem extends AppCompatActivity {
 
 
         favoriteMe();
+        showImage();
         getColors();
-        getStyles();
+        setStyleTV();
         setTypeSpinner();
-        createSettings();
         finishActivity();
+        createSettings();
     }
 
     private void createSettings(){
@@ -83,6 +73,11 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
+
+    private void showImage(){
+        itemPicture = findViewById(R.id.addItemImage);
+    }
+
     private void getColors(){
         colorInput = findViewById(R.id.addItemColorTV);
         colors = getResources().getStringArray(R.array.ColorOptions);
@@ -91,14 +86,14 @@ public class AddItem extends AppCompatActivity {
         colorInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder=
+                AlertDialog.Builder builder =
                         new AlertDialog.Builder(AddItem.this);
                 builder.setTitle(R.string.colorHint);
                 builder.setCancelable(false);
                 builder.setMultiChoiceItems(colors, selectedColors, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        if(isChecked){
+                        if (isChecked){
                             colorList.add(which);
                             Collections.sort(colorList);
                         } else {
@@ -111,54 +106,60 @@ public class AddItem extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         StringBuilder stringBuilder = new StringBuilder();
-                        for (int i = 0; i<colorList.size(); i++){
+                        for (int i =0; i<colorList.size(); i++){
                             stringBuilder.append(colors[colorList.get(i)]);
                             clothing.addColorToArray(colors[colorList.get(i)]);
 
-                            if (i != colorList.size() -1){
+                            if(i != colorList.size()-1){
                                 stringBuilder.append("\n");
                             }
                         }
                         colorInput.setText(stringBuilder.toString());
                     }
                 });
-
                 builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        clothing.clearColorArray();
                         dialog.dismiss();
                     }
                 });
-
                 builder.show();
             }
         });
-
     }
+    /*private void getColors(){
+        colorInput = findViewById(R.id.addItemColorTextInputEditText);
+        if (colorInput.getText() != null) {
+            String addME = String.valueOf(colorInput.getText());
+            ArrayList<String> addColor = new ArrayList<>();
+            addColor.add(addME);
+            clothing.setColors(addColor);
+        }
 
-    private void getStyles(){
+
+    }*/
+
+    private void setStyleTV(){
         styleInput = findViewById(R.id.addItemStyleTV);
         styles = getResources().getStringArray(R.array.ClothingStyles);
         boolean[] selectedStyles = new boolean[styles.length];
-        ArrayList<Integer> stylesList = new ArrayList<>();
+        ArrayList<Integer> styleList = new ArrayList<>();
 
         styleInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder=
+                AlertDialog.Builder builder =
                         new AlertDialog.Builder(AddItem.this);
                 builder.setTitle(R.string.styleHint);
                 builder.setCancelable(false);
-                builder.setMultiChoiceItems(styles, selectedStyles,
-                        new DialogInterface.OnMultiChoiceClickListener() {
+                builder.setMultiChoiceItems(styles, selectedStyles, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                         if(isChecked){
-                            stylesList.add(which);
-                            Collections.sort(stylesList);
+                            styleList.add(which);
+                            Collections.sort(styleList);
                         } else {
-                            stylesList.remove(Integer.valueOf(which));
+                            styleList.remove(Integer.valueOf(which));
                         }
                     }
                 });
@@ -167,22 +168,19 @@ public class AddItem extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         StringBuilder stringBuilder = new StringBuilder();
-                        for (int i = 0; i < stylesList.size(); i++){
-                            stringBuilder.append(styles[stylesList.get(i)]);
-                            clothing.addSylesToArray(styles[stylesList.get(i)]);
-
-                            if (i != stylesList.size() -1){
+                        for (int i = 0; i<styleList.size(); i++){
+                            stringBuilder.append(styles[styleList.get(i)]);
+                            clothing.addStylesToArray(styles[styleList.get(i)]);
+                            if (i != styleList.size()-1){
                                 stringBuilder.append("\n");
                             }
                         }
                         styleInput.setText(stringBuilder.toString());
                     }
                 });
-
                 builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        clothing.clearStyleArray();
                         dialog.dismiss();
                     }
                 });
@@ -193,7 +191,7 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void finishActivity(){
-        finished = findViewById(R.id.addImage);
+        finished = findViewById(R.id.addItemToAddImage);
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,7 +199,7 @@ public class AddItem extends AppCompatActivity {
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
                     Intent intent  = new Intent(getApplicationContext(),
-                            AddImage.class);
+                            HomeScreen.class);
                     startActivity(intent);
                     finish();
                 }
@@ -259,11 +257,10 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
-
     private void setTypeSpinner(){
         typeSpinner = findViewById(R.id.addItemTypeSpinner);
         types = getResources().getStringArray(R.array.ClothingType);
-        adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, types);
         typeSpinner.setAdapter(adapter);
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

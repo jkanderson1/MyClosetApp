@@ -11,16 +11,16 @@ public class Clothing {
     private final String ITEMS = "Items";
     private String identification;   // randomly generated string to identify
     // item in firebase
-    private ArrayList<String>
-            colors, // array list of colors in the item
-            seasons, // arraylist of seasons appropriate for item
-            styles;   // arraylist of Styles appropriate for item
+    private ArrayList<String> colors;    // array list of colors in the item
+    private ArrayList<String> seasons;   // arraylist of seasons appropriate
+    // for item
+    private ArrayList<String> styles;    // arraylist of Styles appropriate
+    // for item
     private String pictureID;   // randomly generated string identification of
     // associated image
     private Boolean favorite;    // if the item is favorited
     private String type;
-
-    private DatabaseReference closet = FirebaseDatabase.getInstance().getReference();
+    private static Closet myCloset = Closet.getInstance();
 
 
     /**
@@ -46,11 +46,8 @@ public class Clothing {
      * Item is set as a child of "Items" and then as a child of its id
      */
     public void addToCloset(){
-        //TODO: figure out how to check if that ID has already been used
-        // TODO: add items under the current user's ID
-        closet.child(type).child(identification).setValue(this);
+        myCloset.addClothes(this);
     }
-
 
     /**
      * Creates a randomly generated Integer that is converted into a string
@@ -74,20 +71,13 @@ public class Clothing {
        this.colors.add(color);
     }
 
-    public void clearColorArray(){
-        this.colors = null;
-    }
-
-    public void addSylesToArray(String style){
+    public void addStylesToArray(String style){
         if (this.styles == null){
             this.styles = new ArrayList<>();
         }
         this.styles.add(style);
     }
 
-    public void clearStyleArray(){
-        this.styles = null;
-    }
     /**
      * sets colors array
      * @param colors

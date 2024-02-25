@@ -3,35 +3,22 @@
     <string name="AddItem">Add Item</string>
     <string name="colorHint">Select Color(s)</string>
     <string name="Login">Login</string>
+    <string name="Okay">Okay</string>
+    <string name="Cancel">Cancel</string>
     <string name="Register">Register</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="my_closet">My Closet</string>
-    <string name="add_image">Add Image</string>
     <string name ="typeHint">Enter Clothing Type</string>
     <string name ="styleHint">Select Clothing Style(s)</string>
     <string name="addToFavHint">Add item to favorites</string>
     <string name ="removeFromFavsHint">Remove item from favorites</string>
-    <string name ="AddImage">Add Image</string>
-    <string name ="Okay">OK</string>
-    <string name ="Cancel">Cancel</string>
-    <string name ="CancelAll">Cancel All</string>
-    <string-array name="ColorOptions">
-        <item>Blue</item>
-        <item>Red</item>
-        <item>Yellow</item>
-        <item>Purple</item>
-        <item>Pink</item>
-        <item>Orange</item>
-        <item>Black</item>
-        <item>White</item>
-    </string-array>
+    <string name = "AddImage">Add Image</string>
     <string-array name="ClothingStyles">
-        <item>Select Clothing Style</item>
+        <item>Formal</item>
         <item>Business Casual</item>
         <item>Athletic</item>
         <item>Casual</item>
-        <item>Formal</item>
     </string-array>
     <string-array name="ClothingType">
         <item>Select Clothing Type</item>
@@ -39,4 +26,16 @@
         <item>Bottom</item>
         <item>Shoe</item>
     </string-array>
+    <string-array name="ColorOptions">
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Indigo</item>
+        <item>Violet</item>
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
+
 </resources>
