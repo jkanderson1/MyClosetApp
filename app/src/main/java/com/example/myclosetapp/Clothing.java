@@ -48,7 +48,7 @@ public class Clothing {
     public void addToCloset(){
         //TODO: figure out how to check if that ID has already been used
         // TODO: add items under the current user's ID
-        closet.child(ITEMS).child(identification).setValue(this);
+        closet.child(type).child(identification).setValue(this);
     }
 
 
