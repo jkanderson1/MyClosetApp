@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Closet {
     private DatabaseReference closet = FirebaseDatabase.getInstance().getReference();
@@ -35,5 +36,21 @@ public class Closet {
             }
         });
         return success[0];
+    }
+
+    public String createIDs(){
+        boolean go = true;
+        Random rand = new Random();
+        String temp = Integer.toString(rand.nextInt());
+        while (go){
+            temp = Integer.toString(rand.nextInt());
+            for (int i=0; i<ids.size(); i++){
+                if(ids.get(i).equalsIgnoreCase(temp)){
+                    go = true;
+                }
+            }
+            go = false;
+        }
+        return temp;
     }
 }

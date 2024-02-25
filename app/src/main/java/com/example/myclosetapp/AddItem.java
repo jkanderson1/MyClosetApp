@@ -37,16 +37,15 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+        myCloset = findViewById(R.id.addItemAppName);
+        itemPicture  = findViewById(R.id.addItemImage);
+        clothing = new Clothing();
 
         // For testing purposes
             String pictureId = "2";
-            clothing = new Clothing();
         clothing.setPictureID(pictureId);
 
-
-
         favoriteMe();
-        showImage();
         getColors();
         getStyles();
         getSeasons();
@@ -68,9 +67,6 @@ public class AddItem extends AppCompatActivity {
     }
 
 
-    private void showImage(){
-        itemPicture = findViewById(R.id.addItemImage);
-    }
 
     private void getSeasons(){
         seasonInput = findViewById(R.id.addItemSeasonsTV);

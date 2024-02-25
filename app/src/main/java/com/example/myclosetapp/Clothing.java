@@ -50,10 +50,7 @@ public class Clothing {
         if (identification != null) {
             return identification;
         }
-        Random random= new Random();
-        // TODO: add functionality to access all ID's in firebase and then
-        //  make sure generated ID is unique;
-        return Integer.toString(random.nextInt());
+        return myCloset.createIDs();
     }
 
     public void addColorToArray(String color){
