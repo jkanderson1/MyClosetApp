@@ -29,6 +29,7 @@ public class Preferences extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 changePassword("currentPassword", "newPassword");
                 Intent intent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(intent);
@@ -42,7 +43,6 @@ public class Preferences extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if (user != null) {
-            // Re-authenticate the user to make sure the current password is correct
             AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), currentPassword);
             user.reauthenticate(credential)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
