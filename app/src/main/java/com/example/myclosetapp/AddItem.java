@@ -1,8 +1,5 @@
 package com.example.myclosetapp;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,13 +15,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class AddItem extends AppCompatActivity {
     ImageButton favFalse,favTrue ;
     ViewSwitcher switchFavs;
-    Button finished, settings;
+    Button finished, settings, Back;
     ImageView itemPicture;
     Spinner typeSpinner;
     TextView myCloset, styleInput,colorInput,seasonInput;
@@ -287,6 +287,16 @@ public class AddItem extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+            }
+        });
+
+        Back = (Button) findViewById(R.id.backButton);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                startActivity(intent);
+                finish();
             }
         });
 

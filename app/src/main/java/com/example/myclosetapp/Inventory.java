@@ -1,15 +1,12 @@
 package com.example.myclosetapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inventory extends AppCompatActivity {
 
@@ -17,6 +14,7 @@ public class Inventory extends AppCompatActivity {
     private Button addItem;
 
     Button Home;
+    Button Back;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,6 +54,15 @@ public class Inventory extends AppCompatActivity {
             }
         });
 
+        Back = (Button) findViewById(R.id.backButton);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }
