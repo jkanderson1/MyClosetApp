@@ -11,14 +11,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 // import android.widget.Toast;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.Firebase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,13 +30,91 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
 import java.lang.reflect.Array;
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 
-    public class Outfit {
-        private FirebaseFirestore db;
+public class Outfit {
+    private static final String TAG = "Outfit";
+    private List<Clothing> clothes;
+    private FirebaseFirestore db;
+    //private ArrayList<Clothing> clothes;
+
+    public Outfit() {
+        clothes = new ArrayList<>();
+        db = FirebaseFirestore.getInstance();
+    }
+
+    public void addClothing(Clothing clothing) {
+        clothes.add(clothing);
+    }
+
+    public void generateRandomOutfit() {
+        String randomDocumentId = getRandomDocumentId();
+        DocumentReference docRef = db.collection("clothing").document(randomDocumentId);
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Clothing clothing = documentSnapshot.toObject(Clothing.class);
+                    addClothing(clothing);
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Error getting document", e);
+            }
+        });
+    }
+
+    private String getRandomDocumentId() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(10) + 1;
+        return "clothing_ " + randomIndex;
+    }
+}
+
+    /*
+    private Clothing getClothingFromFirebase(int index) {
+        Clothing clothing = new Clothing();
+        clothing.addColorToArray("black");
+        clothing.addColorToArray("white");
+        return clothing;
+    }
+
+    private boolean complementsExistingColors(ArrayList<String> newColors, ArrayList<String> existingColors) {
+        for (String color : newColors) {
+            if (existingColors.contains(color)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void displayOutfit() {
+
+    }
+
+    public static void main(String[] args) {
+        Outfit outfit = new Outfit();
+        outfit.generateRandomOutfit();
+        outfit.displayOutfit();
+    }
+
+
+
+}
+
+    /*
+    private FirebaseFirestore db;
         private CollectionReference outfitsCollection;
         private String id; // Unique identifier for the outfit
         private int topColor;
