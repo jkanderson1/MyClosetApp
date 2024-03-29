@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +17,8 @@ public class Inventory extends AppCompatActivity {
     private Button generateOutfitButton;
     private Outfit outfit;
 
-    Button Home;
+    private ImageButton Home;
+
     Button Back;
 
     @SuppressLint("MissingInflatedId")
@@ -47,11 +49,13 @@ public class Inventory extends AppCompatActivity {
         }); {
 
         }
-        Home = (Button) findViewById(R.id.HomeScreen);
+
+        Home = findViewById(R.id.homeButton);
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(getApplicationContext(),
+                        HomeScreen.class);
                 startActivity(intent);
                 finish();
             }

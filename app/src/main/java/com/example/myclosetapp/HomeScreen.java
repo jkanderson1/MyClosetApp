@@ -52,7 +52,8 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-        remove = findViewById(R.id.HS_RemoveItem);
+        //testing remove functionality
+       /* remove = findViewById(R.id.HS_RemoveItem);
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +69,6 @@ public class HomeScreen extends AppCompatActivity {
                         LENGTH_SHORT);
                 remove.show();
             }
-        });
+        });*/
     }
 }
