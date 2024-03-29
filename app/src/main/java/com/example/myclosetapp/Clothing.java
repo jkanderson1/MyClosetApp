@@ -42,6 +42,14 @@ public class Clothing {
     }
 
     /**
+     * removes current clothing item from Firebase Realtime Database
+     * @return
+     */
+    public boolean removeFromCloset(){
+        return myCloset.removeItem(this);
+    }
+
+    /**
      * Creates a randomly generated Integer that is converted into a string
      * @return identification
      */

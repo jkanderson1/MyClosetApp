@@ -1,17 +1,20 @@
 package com.example.myclosetapp;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeScreen extends AppCompatActivity {
     FloatingActionButton addItem;
-     Button settings, inventory;
+     Button settings, inventory, remove;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,5 +52,22 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+        remove = findViewById(R.id.HS_RemoveItem);
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // for testing purposes
+                Clothing test = new Clothing();
+                String id = test.getIdentification();
+                test.setType(ClothingType.TOP);
+                test.addToCloset();
+                Toast added = Toast.makeText(HomeScreen.this,"added",LENGTH_SHORT);
+                added.show();
+                test.removeFromCloset();
+                Toast remove = Toast.makeText(HomeScreen.this, "removed",
+                        LENGTH_SHORT);
+                remove.show();
+            }
+        });
     }
 }
