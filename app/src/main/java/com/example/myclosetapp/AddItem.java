@@ -18,6 +18,8 @@ import android.widget.ViewSwitcher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -299,5 +301,6 @@ public class AddItem extends AppCompatActivity {
         });
 
     }
+
 
 }

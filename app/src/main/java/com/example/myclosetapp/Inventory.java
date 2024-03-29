@@ -29,16 +29,14 @@ public class Inventory extends AppCompatActivity
     private ItemsDataService itemsData;
 
     public Button settings;
-
     private Button addItem;
 
     private Button generateOutfitButton;
 
     private DatabaseReference db;
 
-    private Button Home;
-
-    private Button Back;
+    Button Home;
+    Button Back;
 
     @SuppressLint("MissingInflatedId")
     @Override
