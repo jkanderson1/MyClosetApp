@@ -30,6 +30,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.UUID;
 
 public class AddImage extends AppCompatActivity {
+
+    Closet closet = Closet.getInstance();
     StorageReference storageReference;
     LinearProgressIndicator progressIndicator;
     Uri image;
@@ -103,6 +105,7 @@ public class AddImage extends AppCompatActivity {
         ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                addPictureIDtoItem(id);
                 Toast.makeText(AddImage.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -127,5 +130,12 @@ public class AddImage extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void addPictureIDtoItem(String picID){
+        Intent intent = getIntent();
+        String name = getResources().getString(R.string.IDtoPass);
+        String itemID = intent.getStringExtra(name);
+        closet.addPictureID(itemID,picID);
     }
 }
