@@ -30,7 +30,7 @@ public class Closet {
     }
     public boolean addClothes(@NonNull Clothing item){
         final boolean[] success = {false};
-        closet.child(item.getType()).child(item.getIdentification()).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+        closet.child(item.getIdentification()).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 ids.add(item.getIdentification());
@@ -66,7 +66,7 @@ public class Closet {
         if (item!= null){
             String id = item.getIdentification();
             String type = item.getType();
-            closet.child(type).child(id).removeValue(new DatabaseReference.CompletionListener() {
+            closet.child(id).removeValue(new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     success[0] = true;
