@@ -38,7 +38,7 @@ import java.util.Random;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Outfit {
+public class Outfit  extends AppCompatActivity{
     private static final String TAG = "Outfit";
     private List<Clothing> clothes;
     private FirebaseFirestore db;

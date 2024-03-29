@@ -72,7 +72,10 @@ public class Inventory extends AppCompatActivity {
         generateOutfitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Outfit.class);
                 generateOutfit();
+                startActivity(intent);
+                finish();
             }
         });
 
