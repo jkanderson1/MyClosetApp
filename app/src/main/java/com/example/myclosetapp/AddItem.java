@@ -41,10 +41,6 @@ public class AddItem extends AppCompatActivity {
         itemPicture  = findViewById(R.id.addItemImage);
         clothing = new Clothing();
 
-        // For testing purposes
-            String pictureId = "2";
-        clothing.setPictureID(pictureId);
-
         favoriteMe();
         getColors();
         getStyles();
@@ -282,8 +278,10 @@ public class AddItem extends AppCompatActivity {
 
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
+                    String name = getResources().getString(R.string.IDtoPass);
                     Intent intent  = new Intent(getApplicationContext(),
                             AddImage.class);
+                    intent.putExtra(name,clothing.getIdentification());
                     startActivity(intent);
                     finish();
                 }
