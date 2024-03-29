@@ -98,7 +98,8 @@ public class AddImage extends AppCompatActivity {
     }
 
     private void uploadImage(Uri file) {
-        StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+        String id = UUID.randomUUID().toString();
+        StorageReference ref = storageReference.child("images/" + id);
         ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
