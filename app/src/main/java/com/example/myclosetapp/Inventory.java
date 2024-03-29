@@ -13,6 +13,9 @@ public class Inventory extends AppCompatActivity {
     public Button settings;
     private Button addItem;
 
+    private Button generateOutfitButton;
+    private Outfit outfit;
+
     Button Home;
     Button Back;
 
@@ -64,5 +67,19 @@ public class Inventory extends AppCompatActivity {
             }
         });
 
+        outfit = new Outfit();
+        generateOutfitButton = (Button) findViewById(R.id.generateButton);
+        generateOutfitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generateOutfit();
+            }
+        });
+
+
+
+    }
+    private void generateOutfit() {
+        outfit.generateRandomOutfit();
     }
 }
