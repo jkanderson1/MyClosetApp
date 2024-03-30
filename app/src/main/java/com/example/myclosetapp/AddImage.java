@@ -1,8 +1,10 @@
 package com.example.myclosetapp;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class AddImage extends AppCompatActivity {
     LinearProgressIndicator progressIndicator;
     Uri image;
     MaterialButton uploadImage, selectImage;
+    Button addItem, Back;
     ImageView imageView;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -49,6 +52,7 @@ public class AddImage extends AppCompatActivity {
 
     });
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,7 @@ public class AddImage extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         selectImage = findViewById(R.id.selectImage);
         uploadImage = findViewById(R.id.uploadImage);
+        addItem = findViewById(R.id.addItem);
 
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +77,15 @@ public class AddImage extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 activityResultLauncher.launch(intent);
+            }
+        });
+
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Inventory.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -100,6 +114,16 @@ public class AddImage extends AppCompatActivity {
             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                 progressIndicator.setMax(Math.toIntExact(taskSnapshot.getTotalByteCount()));
                 progressIndicator.setProgress(Math.toIntExact(taskSnapshot.getBytesTransferred()));
+            }
+        });
+
+        Back = (Button) findViewById(R.id.backButton);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

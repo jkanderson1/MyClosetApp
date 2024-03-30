@@ -37,7 +37,7 @@ public class LoginTest {
 
         // Verify that startActivity was called with the expected intent
         Mockito.verify(loginActivity).startActivity(Mockito.any(Intent.class));
-        // Verify that finish was called
+
         Mockito.verify(loginActivity).finish();
     }
 
@@ -47,9 +47,9 @@ public class LoginTest {
 
         loginActivity.onStart();
 
-        // Verify that startActivity was not called
+
         Mockito.verify(loginActivity, Mockito.never()).startActivity(Mockito.any(Intent.class));
-        // Verify that finish was not called
+
         Mockito.verify(loginActivity, Mockito.never()).finish();
     }
 }

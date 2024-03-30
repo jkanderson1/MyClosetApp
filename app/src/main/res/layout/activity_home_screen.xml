@@ -68,4 +68,37 @@
         app:layout_constraintEnd_toStartOf="@+id/homeScreenToAddItem"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/favFit1"
+        android:layout_width="110dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/inventoryButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.172"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/favFit2"
+        android:layout_width="110dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/inventoryButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.43"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/favFit3"
+        android:layout_width="110dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/inventoryButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.691"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
