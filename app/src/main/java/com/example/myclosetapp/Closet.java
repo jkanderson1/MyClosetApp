@@ -66,7 +66,7 @@ public class Closet {
         if (item!= null){
             String id = item.getIdentification();
             String type = item.getType();
-            closet.child(type).child(id).removeValue(new DatabaseReference.CompletionListener() {
+            closet.child(id).removeValue(new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     success[0] = true;
@@ -79,7 +79,10 @@ public class Closet {
         return success[0];
     }
 
-   /* public ArrayList<String> searchCloset (ArrayList<String> criteria) {
+    public void addPictureID(String itemID, String picID){
+        closet.child(itemID).child("pictureID").setValue(picID);
+    }
+  /* public ArrayList<String> searchCloset (ArrayList<String> criteria) {
         ArrayList<String> resultIds = new ArrayList<>();
         if(criteria != null){
            // String [] meta = criteriaData(criteria);
