@@ -2,15 +2,30 @@ package com.example.myclosetapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inventory extends AppCompatActivity {
 
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference();
+    StorageReference imageRef;
     public Button settings;
     private Button addItem;
 
@@ -19,6 +34,11 @@ public class Inventory extends AppCompatActivity {
 
     private ImageButton Home;
 
+    private RecyclerView recyclerView;
+    private ImageAdapter adapter;
+    private List<Uri> imageURLs;
+
+
     Button Back;
 
     @SuppressLint("MissingInflatedId")
@@ -26,6 +46,8 @@ public class Inventory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
+
+        imageViewSetUp();
 
         settings = (Button) findViewById(R.id.button1);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -89,4 +111,29 @@ public class Inventory extends AppCompatActivity {
     private void generateOutfit() {
         outfit.generateRandomOutfit();
     }
+
+    private void imageViewSetUp(){
+        recyclerView = findViewById(R.id.RecyclerViewInventory);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        imageURLs = new ArrayList<>();
+            // for testing purposes
+        imageRef = storageReference.child("images/10a7b6b0-5611-4aba-8749" +
+                "-54cff724de83");
+        imageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if(task.isSuccessful()){
+                    Uri downloadURI = task.getResult();
+                    if(downloadURI != null){
+                        imageURLs.add(downloadURI);
+                    }
+                }
+            }
+        });
+
+        adapter = new ImageAdapter(Inventory.this, imageURLs);
+        recyclerView.setAdapter(adapter);
+    }
+
 }

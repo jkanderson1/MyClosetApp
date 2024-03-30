@@ -82,7 +82,7 @@ public class Closet {
     public void addPictureID(String itemID, String picID){
         closet.child(itemID).child("pictureID").setValue(picID);
     }
-   /* public ArrayList<String> searchCloset (ArrayList<String> criteria) {
+  /* public ArrayList<String> searchCloset (ArrayList<String> criteria) {
         ArrayList<String> resultIds = new ArrayList<>();
         if(criteria != null){
            // String [] meta = criteriaData(criteria);

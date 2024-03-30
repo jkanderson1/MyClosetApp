@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Inventory">
 
-   <!-- <androidx.recyclerview.widget.RecyclerView
+   <androidx.recyclerview.widget.RecyclerView
+        android:id = "@+id/RecyclerViewInventory"
         android:layout_width="415dp"
         android:layout_height="548dp"
         android:layout_marginTop="21dp"
@@ -17,7 +18,7 @@
         app:layout_constraintVertical_bias="0.0"
         android:contentDescription="scrollable view of all item images">
 
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/imageView3"
             android:layout_width="97dp"
             android:layout_height="91dp"
@@ -37,8 +38,8 @@
             android:layout_height="91dp"
             android:layout_marginStart="296dp"
             android:layout_marginEnd="20dp"
-            tools:srcCompat="@tools:sample/avatars" />
-    </androidx.recyclerview.widget.RecyclerView>-->
+            tools:srcCompat="@tools:sample/avatars" />-->
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/InventoryTV"
