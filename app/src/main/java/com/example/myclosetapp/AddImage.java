@@ -29,6 +29,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
+//working add image
 public class AddImage extends AppCompatActivity {
     StorageReference storageReference;
     LinearProgressIndicator progressIndicator;
