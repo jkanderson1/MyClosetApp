@@ -29,6 +29,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
+//working add image
 public class AddImage extends AppCompatActivity {
 
     Closet closet = Closet.getInstance();
