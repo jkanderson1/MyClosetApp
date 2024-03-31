@@ -3,14 +3,22 @@ package com.example.myclosetapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.myclosetapp.services.ItemsDataService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.gridlayout.widget.GridLayout;
 
@@ -40,6 +48,39 @@ public class Inventory extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         itemsData = ItemsDataService.getInstance();
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference reference = firebaseDatabase.getReference();
+        reference.child("example").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot clothes) {
+                Log.i("database", clothes.toString());
+                Log.d("database", "data received");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("database", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+
+        // child("items").child("3566745686")
+        reference.child("example").setValue(654);
+        reference.child("example").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("database", "Error getting data", task.getException());
+                }
+                else {
+                    Log.d("database", String.valueOf(task.getResult().getValue()));
+                }
+                Log.i("database", "onComplete triggered");
+            }
+        });
+
+        Log.i("database", "if you are seeing this message but are not seeing any other log messages, then the database was not read.");
 
         // fetching of items
 
