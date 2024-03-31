@@ -66,7 +66,7 @@ public class Inventory extends AppCompatActivity
         });
 
         // child("items").child("3566745686")
-        reference.child("example").setValue(654);
+        //reference.child("example").setValue(654);
         reference.child("example").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
