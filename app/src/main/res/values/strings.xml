@@ -10,11 +10,11 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="my_closet">My Closet</string>
-    <string name ="typeHint">Enter Clothing Type</string>
-    <string name ="styleHint">Select Clothing Style(s)</string>
+    <string name="typeHint">Enter Clothing Type</string>
+    <string name="styleHint">Select Clothing Style(s)</string>
     <string name="addToFavHint">Add item to favorites</string>
-    <string name ="removeFromFavsHint">Remove item from favorites</string>
-    <string name = "AddImage">Add Image</string>
+    <string name="removeFromFavsHint">Remove item from favorites</string>
+    <string name="AddImage">Add Image</string>
     <string name="ItemImageDescription">Item image</string>
     <string name="ItemDetails">Item Details</string>
     <string-array name="ClothingStyles">
