@@ -15,7 +15,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Closet {
-    private DatabaseReference closet = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference closet =
+            FirebaseDatabase.getInstance().getReference();
     private static Closet instance = new Closet();
     private ArrayList<String> ids;
     private Closet(){
@@ -82,6 +83,60 @@ public class Closet {
     public void addPictureID(String itemID, String picID){
         closet.child(itemID).child("pictureID").setValue(picID);
     }
+
+    /*public void searchCloset(String criteria){
+        String orderby = "styles";
+        closet.orderByChild(orderby).equalTo(criteria).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot snap :snapshot.getChildren()){
+                        Clothing match = snapshot.getValue()
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
+
+   /* public ArrayList<String> searchCloset (ArrayList<String> criteria){
+        ArrayList<String> searchResults = new ArrayList<>();
+        DatabaseReference stlyes = closet.child("styles");
+        for(String x: ids){
+            for(String y:criteria){
+                stlyes.orderByChild(y).equalTo(y).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            searchResults.add(x);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        }
+
+        return searchResults;
+    }
+
+    private ArrayList<String> uniqueResults (ArrayList<String> resultList,
+                                     String match){
+        for (String check:resultList){
+            if (match.equalsIgnoreCase(check)){
+               return resultList;
+            }
+        }
+        resultList.add(match);
+        return resultList;
+    }*/
   /* public ArrayList<String> searchCloset (ArrayList<String> criteria) {
         ArrayList<String> resultIds = new ArrayList<>();
         if(criteria != null){
