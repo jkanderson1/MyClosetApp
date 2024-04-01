@@ -36,6 +36,7 @@ public class Inventory extends AppCompatActivity
     private GridLayout itemsShoeGrid;
 
     public Button settings;
+
     private Button addItem;
 
     private Button generateOutfitButton;
@@ -88,13 +89,9 @@ public class Inventory extends AppCompatActivity
                                 default:
                                     Log.e("database", "Item with invalid type was found.");
                             }
-
-                            Log.d("database", item.toString());
                         }
                     });
                 }
-
-                Log.i("database", "onComplete triggered");
             }
         });
 

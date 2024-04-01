@@ -25,8 +25,6 @@ public class Outfit  extends AppCompatActivity
 {
     private Button back;
 
-    private static final String TAG = "Outfit";
-
     private List<Clothing> clothes;
 
     @Override
