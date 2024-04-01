@@ -53,22 +53,17 @@ public class HomeScreen extends AppCompatActivity {
         });
 
         //testing remove functionality
-       /* remove = findViewById(R.id.HS_RemoveItem);
+        remove = findViewById(R.id.HS_RemoveItem);
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // for testing purposes
-                Clothing test = new Clothing();
-                String id = test.getIdentification();
-                test.setType(ClothingType.TOP);
-                test.addToCloset();
-                Toast added = Toast.makeText(HomeScreen.this,"added",LENGTH_SHORT);
-                added.show();
-                test.removeFromCloset();
-                Toast remove = Toast.makeText(HomeScreen.this, "removed",
+                if(Closet.getInstance().clearCloset()){
+                    Toast clearCloset = Toast.makeText(HomeScreen.this, "Closet " +
+                                "Cleared!",
                         LENGTH_SHORT);
-                remove.show();
+                    clearCloset.show();}
             }
-        });*/
+        });
     }
 }

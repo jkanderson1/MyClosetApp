@@ -80,6 +80,18 @@ public class Closet {
         return success[0];
     }
 
+    public boolean clearCloset (){
+        Boolean[] success = {false};
+        closet.removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                success[0] = true;
+            }
+        });
+
+        return success[0];
+    }
+
     public void addPictureID(String itemID,String type, String picID){
         closet.child(type).child(itemID).child("pictureID").setValue(picID);
     }
