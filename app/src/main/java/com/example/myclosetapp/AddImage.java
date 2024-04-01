@@ -135,7 +135,7 @@ public class AddImage extends AppCompatActivity {
     private void addPictureIDtoItem(String picID){
         Intent intent = getIntent();
         String name = getResources().getString(R.string.IDtoPass);
-        String itemID = intent.getStringExtra(name);
-        closet.addPictureID(itemID,picID);
+        String[] IdAndType= intent.getStringExtra(name).split(":");
+        closet.addPictureID(IdAndType[0],IdAndType[1],picID);
     }
 }

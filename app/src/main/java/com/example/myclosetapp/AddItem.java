@@ -283,7 +283,8 @@ public class AddItem extends AppCompatActivity {
                     String name = getResources().getString(R.string.IDtoPass);
                     Intent intent  = new Intent(getApplicationContext(),
                             AddImage.class);
-                    intent.putExtra(name,clothing.getIdentification());
+                    intent.putExtra(name,
+                            clothing.getIdentification()+":"+clothing.getType());
                     startActivity(intent);
                     finish();
                 }
