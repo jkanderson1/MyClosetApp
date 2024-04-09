@@ -35,7 +35,7 @@ public class AddImage extends AppCompatActivity {
     LinearProgressIndicator progressIndicator;
     Uri image;
     MaterialButton uploadImage, selectImage;
-    Button addItem;
+    Button addItem, Back;
     ImageView imageView;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -115,6 +115,16 @@ public class AddImage extends AppCompatActivity {
             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                 progressIndicator.setMax(Math.toIntExact(taskSnapshot.getTotalByteCount()));
                 progressIndicator.setProgress(Math.toIntExact(taskSnapshot.getBytesTransferred()));
+            }
+        });
+
+        Back = (Button) findViewById(R.id.backButton);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
