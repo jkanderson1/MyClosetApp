@@ -23,6 +23,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     @Override
+    // Android built in back button
     public void onBackPressed() {
         super.onBackPressed();
     }
@@ -40,6 +41,7 @@ public class Login extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Sets precedent to sign in account with firebase credentials
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
@@ -47,17 +49,12 @@ public class Login extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         login= findViewById(R.id.loginScreenLogin);
         login.setOnClickListener(new View.OnClickListener() {
-            /**public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),
-                        HomeScreen.class);
-                startActivity(intent);
-                finish();
-            }*/
+
             public void onClick(View v) {
                 String email, password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
-
+                // Returns what the user is typing back them live
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(Login.this, "Enter email", Toast.LENGTH_SHORT).show();
                     return;
@@ -70,6 +67,7 @@ public class Login extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
+                            // Signs in if successful
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(),
@@ -80,7 +78,7 @@ public class Login extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(Login.this,
-                                            "Authentication Filed.",
+                                            "Authentication Failed.",
                                             Toast.LENGTH_SHORT).show();
 
                                 }

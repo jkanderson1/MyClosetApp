@@ -34,6 +34,7 @@ public class Register extends AppCompatActivity {
     }
 
     @Override
+    // Android built in back button
     public void onBackPressed() {
         super.onBackPressed();
     }
@@ -42,23 +43,15 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        // Sets precedent to create account with firebase
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         register = findViewById(R.id.registerScreenRegister);
         register.setOnClickListener(new View.OnClickListener() {
 
-            /**
-             * public void onClick(View v) {
-             * Intent intent = new Intent(getApplicationContext(),
-             * Login.class);
-             * startActivity(intent);
-             * finish();
-             * }
-             */
             public void onClick(View v) {
-
+            // Returns what the user is typing back them live
                 String email, password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
@@ -74,6 +67,7 @@ public class Register extends AppCompatActivity {
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
+                            // Creates account if successful
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Register.this, "Account created",
