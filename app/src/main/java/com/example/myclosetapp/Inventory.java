@@ -16,6 +16,11 @@ public class Inventory extends AppCompatActivity {
     Button Home;
     Button Back;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

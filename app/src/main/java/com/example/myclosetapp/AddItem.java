@@ -54,6 +54,11 @@ public class AddItem extends AppCompatActivity {
         createSettings();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     private void createSettings(){
         settings = findViewById(R.id.addItemToSettings);
         settings.setOnClickListener(new View.OnClickListener() {

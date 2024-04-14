@@ -52,6 +52,11 @@ public class AddImage extends AppCompatActivity {
 
     });
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +126,7 @@ public class AddImage extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(getApplicationContext(), AddItem.class);
                 startActivity(intent);
                 finish();
             }
