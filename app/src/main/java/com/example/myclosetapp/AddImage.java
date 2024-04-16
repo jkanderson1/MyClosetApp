@@ -39,6 +39,7 @@ public class AddImage extends AppCompatActivity {
     MaterialButton uploadImage, selectImage;
     Button addItem, Back;
     ImageView imageView;
+    //Method to inform the user to upload image
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -55,6 +56,8 @@ public class AddImage extends AppCompatActivity {
 
     });
 
+
+    //method which holds the relationship between firebase and the screen
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +71,13 @@ public class AddImage extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         progressIndicator = findViewById(R.id.progress);
-
+        //all buttons used
         imageView = findViewById(R.id.imageView);
         selectImage = findViewById(R.id.selectImage);
         uploadImage = findViewById(R.id.uploadImage);
         addItem = findViewById(R.id.addItem);
 
+        //method that stores the item that the user has selected in firebase inside of the image folder
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +87,7 @@ public class AddImage extends AppCompatActivity {
             }
         });
 
+        //method that directs the user to the next screen after uploading their image
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +104,9 @@ public class AddImage extends AppCompatActivity {
             }
         });
     }
-
+    //method that upload the image from the users device to firebase and displays a message after the image is uploaded successfully
+    //the method also will display a message if the image does not upload
+    //
     private void uploadImage(Uri file) {
         String id = UUID.randomUUID().toString();
         StorageReference ref = storageReference.child("images/" + id);
@@ -123,6 +130,7 @@ public class AddImage extends AppCompatActivity {
         });
 
         Back = (Button) findViewById(R.id.backButton);
+        //allow the user to return to the homescreen after pressing the back button
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +141,7 @@ public class AddImage extends AppCompatActivity {
         });
     }
 
+    //Adds the ID of the picture to allow the picture to be shown again on later screens
     private void addPictureIDtoItem(String picID){
         Intent intent = getIntent();
         String name = getResources().getString(R.string.IDtoPass);
