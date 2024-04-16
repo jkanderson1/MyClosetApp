@@ -107,7 +107,7 @@ public class AddImage extends AppCompatActivity {
     //method that upload the image from the users device to firebase and displays a message after the image is uploaded successfully
     //the method also will display a message if the image does not upload
     //
-    private void uploadImage(Uri file) {
+    void uploadImage(Uri file) {
         String id = UUID.randomUUID().toString();
         StorageReference ref = storageReference.child("images/" + id);
         ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
