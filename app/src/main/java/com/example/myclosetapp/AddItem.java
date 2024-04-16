@@ -18,6 +18,8 @@ import android.widget.ViewSwitcher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,10 +42,6 @@ public class AddItem extends AppCompatActivity {
         myCloset = findViewById(R.id.addItemAppName);
         itemPicture  = findViewById(R.id.addItemImage);
         clothing = new Clothing();
-
-        // For testing purposes
-            String pictureId = "2";
-        clothing.setPictureID(pictureId);
 
         favoriteMe();
         getColors();
@@ -282,8 +280,11 @@ public class AddItem extends AppCompatActivity {
 
                 if (!clothing.getType().isEmpty() && !clothing.getColors().isEmpty() && !clothing.getStyles().isEmpty()){
                     clothing.addToCloset();
+                    String name = getResources().getString(R.string.IDtoPass);
                     Intent intent  = new Intent(getApplicationContext(),
                             AddImage.class);
+                    intent.putExtra(name,
+                            clothing.getIdentification()+":"+clothing.getType());
                     startActivity(intent);
                     finish();
                 }
@@ -301,5 +302,6 @@ public class AddItem extends AppCompatActivity {
         });
 
     }
+
 
 }

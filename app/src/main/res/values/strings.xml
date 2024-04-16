@@ -14,9 +14,10 @@
     <string name ="styleHint">Select Clothing Style(s)</string>
     <string name="addToFavHint">Add item to favorites</string>
     <string name ="removeFromFavsHint">Remove item from favorites</string>
-    <string name = "AddImage">Add Image</string>
+    <string name ="AddImage">Add Image</string>
     <string name="ItemImageDescription">Item image</string>
     <string name="ItemDetails">Item Details</string>
+    <string name="IDtoPass">ID to Pass</string>
     <string-array name="ClothingStyles">
         <item>Formal</item>
         <item>Business Casual</item>
@@ -39,6 +40,7 @@
         <item>Violet</item>
         <item>White</item>
         <item>Black</item>
+        <item>Grey</item>
     </string-array>
     <string-array name="Seasons">
         <item>Summer</item>
