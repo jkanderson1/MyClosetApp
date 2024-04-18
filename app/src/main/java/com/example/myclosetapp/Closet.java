@@ -31,13 +31,23 @@ public class Closet {
     }
     public boolean addClothes(@NonNull Clothing item){
         final boolean[] success = {false};
-        closet.child(item.getType()).child(item.getIdentification()).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+        closet.child(item.getIdentification()).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 ids.add(item.getIdentification());
                 success[0] = true;
             }
         });
+        /*closet.child(item.getType()).child(item.getIdentification())
+        .setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+            @Override
+            public void onSuccess(Void unused) {
+                ids.add(item.getIdentification());
+                success[0] = true;
+            }
+        });*/
         return success[0];
     }
 
@@ -67,7 +77,7 @@ public class Closet {
         if (item!= null){
             String id = item.getIdentification();
             String type = item.getType();
-            closet.child(type).child(id).removeValue(new DatabaseReference.CompletionListener() {
+            closet.child(id).removeValue(new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     success[0] = true;
@@ -93,7 +103,7 @@ public class Closet {
     }
 
     public void addPictureID(String itemID,String type, String picID){
-        closet.child(type).child(itemID).child("pictureID").setValue(picID);
+        closet.child(itemID).child("pictureID").setValue(picID);
     }
 
     /*public void searchCloset(String criteria){
