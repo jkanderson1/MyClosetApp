@@ -4,11 +4,17 @@ import android.content.Intent;
 
 import com.bumptech.glide.Glide;
 import com.example.myclosetapp.services.ItemsDataService;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
@@ -17,11 +23,7 @@ import java.util.Random;
 
 public class Outfit  extends AppCompatActivity
 {
-    private ItemsDataService itemsData;
-
     private Button back;
-
-    private static final String TAG = "Outfit";
 
     private List<Clothing> clothes;
 
@@ -31,7 +33,6 @@ public class Outfit  extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit);
-        itemsData = ItemsDataService.getInstance();
 
         back = (Button) findViewById(R.id.BackButton);
         back.setOnClickListener(new View.OnClickListener() {
@@ -47,45 +48,80 @@ public class Outfit  extends AppCompatActivity
     }
 
     private void generateRandomOutfit() {
-        // fetching items by type
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
-        ArrayList<Clothing> itemsTop = itemsData.fetchItemsByType(ClothingType.TOP);
-        ArrayList<Clothing> itemsBottom = itemsData.fetchItemsByType(ClothingType.BOTTOM);
-        ArrayList<Clothing> itemsShoe = itemsData.fetchItemsByType(ClothingType.SHOE);
+        dbRef.get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("database", "Error getting data", task.getException());
+            }
+            else {
+                ArrayList<Clothing> itemsTop = new ArrayList<>();
+                ArrayList<Clothing> itemsBottom = new ArrayList<>();
+                ArrayList<Clothing> itemsShoe = new ArrayList<>();
+                Iterable<DataSnapshot> items = task.getResult().getChildren();
 
-        Clothing selectedTopItem = itemsTop.get(new Random().nextInt(itemsTop.size()));
-        Clothing selectedBottomItem = itemsBottom.get(new Random().nextInt(itemsBottom.size()));
-        Clothing selectedShoeItem = itemsShoe.get(new Random().nextInt(itemsShoe.size()));
+                items.forEach(rawItem -> {
+                    if (
+                            rawItem.child("pictureID").exists()
+                                    && rawItem.child("type").exists()
+                    ) {
+                        Clothing item = new Clothing();
+                        item.setPictureID((String) rawItem.child("pictureID").getValue());
+                        item.setIdentification((String) rawItem.child("identification").getValue());
+                        item.setType(ClothingType.valueOf(
+                                (String) rawItem.child("type").getValue()
+                        ));
 
-        //GridLayout itemsTopGrid = (GridLayout)findViewById(R.id.itemsTopGrid);
-        ImageView imageTop = (ImageView) findViewById(R.id.imageTop);
+                        switch (item.getType()) {
+                            case "TOP":
+                                itemsTop.add(item);
+                                break;
+                            case "BOTTOM":
+                                itemsBottom.add(item);
+                                break;
+                            case "SHOE":
+                                itemsShoe.add(item);
+                                break;
+                            default:
+                                Log.e("database", "Item with invalid type was found.");
+                        }
+                    }
+                });
 
-        String imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
-                + selectedTopItem.getPictureID()
-                + "?alt=media";
+                Clothing selectedTopItem = itemsTop.get(new Random().nextInt(itemsTop.size()));
+                Clothing selectedBottomItem = itemsBottom.get(new Random().nextInt(itemsBottom.size()));
+                Clothing selectedShoeItem = itemsShoe.get(new Random().nextInt(itemsShoe.size()));
 
-        Glide.with(this)
-                .load(imageUrl)
-                .into(imageTop);
+                ImageView imageTop = (ImageView) findViewById(R.id.imageTop);
 
-        ImageView imageBottom = (ImageView) findViewById(R.id.imageBottom);
+                String imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
+                        + selectedTopItem.getPictureID()
+                        + "?alt=media";
 
-        imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
-                + selectedBottomItem.getPictureID()
-                + "?alt=media";
+                Glide.with(this)
+                        .load(imageUrl)
+                        .into(imageTop);
 
-        Glide.with(this)
-                .load(imageUrl)
-                .into(imageBottom);
+                ImageView imageBottom = (ImageView) findViewById(R.id.imageBottom);
 
-        ImageView imageShoe = (ImageView) findViewById(R.id.imageShoe);
+                imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
+                        + selectedBottomItem.getPictureID()
+                        + "?alt=media";
 
-        imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
-                + selectedShoeItem.getPictureID()
-                + "?alt=media";
+                Glide.with(this)
+                        .load(imageUrl)
+                        .into(imageBottom);
 
-        Glide.with(this)
-                .load(imageUrl)
-                .into(imageShoe);
+                ImageView imageShoe = (ImageView) findViewById(R.id.imageShoe);
+
+                imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
+                        + selectedShoeItem.getPictureID()
+                        + "?alt=media";
+
+                Glide.with(this)
+                        .load(imageUrl)
+                        .into(imageShoe);
+            }
+        });
     }
 }

@@ -13,6 +13,9 @@ https://github.com/SCCapstone/ByteTheBullet/wiki/Design
 In order to run our app you will have to download android studio or have an android app [https://developer.android.com/studio/]
 
 
+In order to use the "Add Image" functionality, the user will have to upload a photo onto their android emulator. This can be done by saving an image to your computer, locating the devise manager for the emulator within android studio, going to the devise file explorer, and moving the image that you saved on your computer into the sdcard -> Pictures folder. 
+
+
 ## Setup
 Once cloned, the developer needs to sync gradle. 
 

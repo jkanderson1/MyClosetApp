@@ -24,17 +24,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.gridlayout.widget.GridLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Inventory extends AppCompatActivity
 {
-    private ItemsDataService itemsData;
+    private GridLayout itemsTopGrid;
+
+    private GridLayout itemsBottomGrid;
+
+    private GridLayout itemsShoeGrid;
 
     public Button settings;
+
     private Button addItem;
 
     private Button generateOutfitButton;
-
-    private DatabaseReference db;
 
     Button Home;
     Button Back;
@@ -43,120 +48,51 @@ public class Inventory extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // preparing initial state
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        itemsData = ItemsDataService.getInstance();
 
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference reference = firebaseDatabase.getReference();
-        reference.child("example").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot clothes) {
-                Log.i("database", clothes.toString());
-                Log.d("database", "data received");
-            }
+        itemsTopGrid = (GridLayout)findViewById(R.id.itemsTopGrid);
+        itemsBottomGrid = (GridLayout)findViewById(R.id.itemsBottomGrid);
+        itemsShoeGrid = (GridLayout)findViewById(R.id.itemsShoeGrid);
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("database", "loadPost:onCancelled", databaseError.toException());
-            }
-        });
-
-        // child("items").child("3566745686")
-        //reference.child("example").setValue(654);
-        reference.child("example").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        dbRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     Log.e("database", "Error getting data", task.getException());
                 }
                 else {
-                    Log.d("database", String.valueOf(task.getResult().getValue()));
+                    Iterable<DataSnapshot> items = task.getResult().getChildren();
+                    items.forEach(rawItem -> {
+                        if (
+                            rawItem.child("pictureID").exists()
+                            && rawItem.child("type").exists()
+                        ) {
+                            Clothing item = new Clothing();
+                            item.setPictureID((String) rawItem.child("pictureID").getValue());
+                            item.setIdentification((String) rawItem.child("identification").getValue());
+                            item.setType(ClothingType.valueOf(
+                                    (String) rawItem.child("type").getValue()
+                            ));
+
+                            switch (item.getType()) {
+                                case "TOP":
+                                    addItemIntoGrid(itemsTopGrid, item);
+                                    break;
+                                case "BOTTOM":
+                                    addItemIntoGrid(itemsBottomGrid, item);
+                                    break;
+                                case "SHOE":
+                                    addItemIntoGrid(itemsShoeGrid, item);
+                                    break;
+                                default:
+                                    Log.e("database", "Item with invalid type was found.");
+                            }
+                        }
+                    });
                 }
-                Log.i("database", "onComplete triggered");
             }
-        });
-
-        Log.i("database", "if you are seeing this message but are not seeing any other log messages, then the database was not read.");
-
-        // fetching of items
-
-        ArrayList<Clothing> itemsTop = itemsData.fetchItemsByType(ClothingType.TOP);
-        ArrayList<Clothing> itemsBottom = itemsData.fetchItemsByType(ClothingType.BOTTOM);
-        ArrayList<Clothing> itemsShoe = itemsData.fetchItemsByType(ClothingType.SHOE);
-
-        // rendering items in Top grid
-
-        GridLayout itemsTopGrid = (GridLayout)findViewById(R.id.itemsTopGrid);
-
-        itemsTop.forEach(item -> {
-            ImageView image = new ImageView(this.getBaseContext());
-            String imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
-                    + item.getPictureID()
-                    + "?alt=media";
-
-            Glide.with(this)
-                    .load(imageUrl)
-                    .into(image);
-
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.topMargin = 5;
-            params.rightMargin = 5;
-            params.bottomMargin = 5;
-            params.leftMargin = 5;
-            params.height = 340;
-            params.width = 340;
-            itemsTopGrid.addView(image, params);
-        });
-
-        // rendering items on Bottom grid
-
-        GridLayout itemsBottomGrid = (GridLayout)findViewById(R.id.itemsBottomGrid);
-
-        itemsBottom.forEach(item -> {
-            ImageView image = new ImageView(this.getBaseContext());
-            String imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
-                    + item.getPictureID()
-                    + "?alt=media";
-
-            Glide.with(this)
-                    .load(imageUrl)
-                    .into(image);
-
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.topMargin = 5;
-            params.rightMargin = 5;
-            params.bottomMargin = 5;
-            params.leftMargin = 5;
-            params.height = 340;
-            params.width = 340;
-            itemsBottomGrid.addView(image, params);
-        });
-
-        // rendering items on Shoe grid
-
-        GridLayout itemsShoeGrid = (GridLayout)findViewById(R.id.itemsShoeGrid);
-
-        itemsShoe.forEach(item -> {
-            ImageView image = new ImageView(this.getBaseContext());
-            String imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
-                    + item.getPictureID()
-                    + "?alt=media";
-
-            Glide.with(this)
-                    .load(imageUrl)
-                    .into(image);
-
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.topMargin = 5;
-            params.rightMargin = 5;
-            params.bottomMargin = 5;
-            params.leftMargin = 5;
-            params.height = 340;
-            params.width = 340;
-            itemsShoeGrid.addView(image, params);
         });
 
         settings = (Button) findViewById(R.id.button1);
@@ -211,5 +147,26 @@ public class Inventory extends AppCompatActivity
                 finish();
             }
         });
+    }
+
+    private void addItemIntoGrid(GridLayout grid, Clothing item)
+    {
+        ImageView image = new ImageView(this.getBaseContext());
+        String imageUrl = "https://firebasestorage.googleapis.com/v0/b/login-register-firebase-529e6.appspot.com/o/images%2F"
+                + item.getPictureID()
+                + "?alt=media";
+
+        Glide.with(this)
+                .load(imageUrl)
+                .into(image);
+
+        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+        params.topMargin = 5;
+        params.rightMargin = 5;
+        params.bottomMargin = 5;
+        params.leftMargin = 5;
+        params.height = 340;
+        params.width = 340;
+        grid.addView(image, params);
     }
 }
