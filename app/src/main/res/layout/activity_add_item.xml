@@ -175,7 +175,7 @@
 
     <Button
         android:id="@+id/addItemToSettings"
-        android:layout_width="91dp"
+        android:layout_width="94dp"
         android:layout_height="53dp"
         android:layout_marginTop="16dp"
         android:text="Settings"

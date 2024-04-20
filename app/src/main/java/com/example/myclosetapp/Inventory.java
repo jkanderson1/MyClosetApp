@@ -56,6 +56,7 @@ public class Inventory extends AppCompatActivity
         itemsShoeGrid = (GridLayout)findViewById(R.id.itemsShoeGrid);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
+        // gets clothing from database and adds to grids
         dbRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -149,6 +150,7 @@ public class Inventory extends AppCompatActivity
         });
     }
 
+    // adding item to inventory
     private void addItemIntoGrid(GridLayout grid, Clothing item)
     {
         ImageView image = new ImageView(this.getBaseContext());

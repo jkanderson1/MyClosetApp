@@ -47,6 +47,7 @@ public class Outfit  extends AppCompatActivity
         generateRandomOutfit();
     }
 
+    // generates the random outfit for user
     private void generateRandomOutfit() {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
