@@ -21,6 +21,9 @@
             android:name=".FindOutfit"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Preferences"
             android:exported="false" />
         <activity

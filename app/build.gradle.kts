@@ -37,7 +37,11 @@ android {
     buildFeatures{
         viewBinding = true
     }
-
+    /*testOptions {
+        unitTests {
+            returnDefaultValues = true
+        }
+    }*/
 }
 
 dependencies {
@@ -51,6 +55,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.0")
     testImplementation("junit:junit:4.13.2")
     testImplementation ("org.mockito:mockito-core:3.12.4")
+    testImplementation("org.robolectric:robolectric:4.7.1")
     androidTestImplementation ("org.mockito:mockito-android:3.12.4")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
